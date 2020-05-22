@@ -12,5 +12,9 @@
   },
   "author": "",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/naedcristian/server#readme"
+  "homepage": "https://bitbucket.org/naedcristian/server#readme",
+  "dependencies": {
+    "fetch": "^1.1.0",
+    "node-fetch": "^2.6.0"
+  }
 }

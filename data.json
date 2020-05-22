@@ -1,0 +1,150 @@
+{
+    "User": [
+        {
+            "idUser": "123",
+            "firstname": "michele",
+            "surname": "faedi",
+            "email": "email",
+            "hashPassword": "p"
+        },
+        {
+            "idUser": "321",
+            "firstname": "cristian",
+            "surname": "casadei",
+            "email": "cristian.casadei6@studio.unibo.it",
+            "hashPassword": "hashPaswd1"
+        }
+    ],
+    "Friendship": [
+        {
+            "idFriendship": "1",
+            "idUser1": "123",
+            "idUser2": "321"
+        }
+    ],
+    "Message": [
+        {
+            "idFriendship": "1",
+            "date": "2020-05-02T18:25:43Z",
+            "message": "Ciao questo è un messaggio",
+            "idSender": "123",
+            "idReceiver": "321"
+        }
+    ],
+    "Level": [
+        {
+            "idUser": "123",
+            "cat": "sport",
+            "PE": "12300",
+            "level": "100"
+        }
+    ],
+    "History": [
+        {
+            "idUser": "123",
+            "date": "2020-05-01T18:25:43Z",
+            "idExercise": "90"
+        }
+    ],
+    "School": [
+        {
+            "idSchool": "1",
+            "name": "palestra giubilopoli",
+            "email": "giubilopolyJym@gmail.com",
+            "address": "via duefoglie 3",
+            "idTrainer": "321"
+        }
+    ],
+    "Inscription": [
+        {
+            "idUser": "123",
+            "idSchool": "1"
+        }
+    ],
+    "Review": [
+        {
+            "idSchool": "1",
+            "idUser": "123",
+            "val": "4",
+            "comment": "la palestra è piccola"
+        }
+    ],
+    "Course": [
+        {
+            "idCourse": "420",
+            "idSchool": "1",
+            "cat": "sport",
+            "name": "Corso per principianti",
+            "desc": "Corso per le persone che intendono iniziare ad allenarsi pur non avendo esperienza",
+            "minimumLevel": "1"
+        }
+    ],
+    "Exercise": [
+        {
+            "idExercise": "90",
+            "idCourse": "420",
+            "level": "1",
+            "PE": "120",
+            "duration": "10",
+            "name": "streching",
+            "desc": "Esercizio pensato per chi non è sciolto e vuole diventare più agile",
+            "video": "na"
+        }
+    ],
+    "Step": [
+        {
+            "idExercise": "90",
+            "num": "1",
+            "name": "riscaldamento",
+            "desc": "corsa di 1 km",
+            "incVal": "100",
+            "unitMeasure": "metri",
+            "max": "1000",
+            "video": "na"
+        }
+    ],
+    "ExerciseInProgress": [
+        {
+            "idUser": "123",
+            "idExercise": "90",
+            "numStep": "1",
+            "progression": "400",
+            "lastEdit": "2020-05-02T20:25:43Z"
+        }
+    ],
+    "CourseBought": [
+        {
+            "idUser": "123",
+            "idCourse": "420",
+            "level": "1",
+            "purchaseDate": "2020-05-01T18:25:43Z"
+        }
+    ],
+    "MyCommitment": [
+        {
+            "idCommitment": "73",
+            "name": "studiare mobile",
+            "desc": "Fare il progetto in android",
+            "creationDate": "2020-05-02T20:25:43Z",
+            "idUser": "123"
+        }
+    ],
+    "MyStep": [
+        {
+            "idMyStep": "42",
+            "idCommitment": "73",
+            "name": "fare database sql",
+            "unitMeasure": "minuti",
+            "max": "300",
+            "repetitionDay": "1",
+            "type": "incremental"
+        }
+    ],
+    "MyStepDone": [
+        {
+            "idMyStep": "42",
+            "dateStart": "2020-05-03T20:25:43Z",
+            "result": "300"
+        }
+    ]
+}

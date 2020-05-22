@@ -23,7 +23,7 @@ const app = async () => {
                 body = JSON.parse(Buffer.concat(body).toString());
             }
             let code = 500;
-            let response = ""
+            let response = "{}";
             if (body.to != undefined && body.to != "") {
                 for (let i = 0; i < services.length; i++) {
                     if (services[i].service = body.to) {
@@ -35,7 +35,7 @@ const app = async () => {
             }
 
             res.writeHead(code);
-            res.write(response);
+            res.write(JSON.stringify(response));
             res.end();
 
         });
