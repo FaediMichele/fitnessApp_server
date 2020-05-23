@@ -18,12 +18,16 @@ var test = async () => {
 
 
     body = JSON.stringify({
-        to: "user", method: "deleteInscription",
+        to: "school", method: "updateSchool",
         idSession: loginData.SessionId,
         data:
-        {
-            idSchool: 1
-        }
+            [{
+                idSchool: 422,
+                cat: "asd",
+                name: "asd bello",
+                desc: "Corso asd bello",
+                minimumLevel: 3
+            }]
     });
     fetch("http://localhost:8080", { method: "POST", body: body })
         .then(data => data.json())

@@ -4,15 +4,17 @@ const url = require("url");
 const Storage = require("./database");
 const Login = require("./login");
 const User = require("./user");
+const School = require("./school");
 
 const port = 8080;
 
 var store = new Storage();
 var login = new Login(store);
 var user = new User(store);
+var school = new School(store);
 
 
-var services = [login, user]
+var services = [login, user, school];
 
 const app = async () => {
     http.createServer(function (req, res) {

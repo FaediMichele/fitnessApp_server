@@ -29,4 +29,12 @@ function getBestInArray(array, arrayField, f) {
     return ret;
 }
 
-module.exports = { getObjectsArray2inArray1, searchObjectInArray, getBestInArray };
+function getNumItemInArray(array, field, f) {
+    for (let i = 0; i < array.length; i++) {
+        if (array[i][field] == f) {
+            return i;
+        }
+    }
+}
+
+module.exports = { getObjectsArray2inArray1, searchObjectInArray, getBestInArray, getNumItemInArray };
