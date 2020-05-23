@@ -8,7 +8,7 @@ class login {
         this.service = service;
     }
 
-    manageGet(queryString) { }
+    async manageGet(queryString) { }
 
     async managePost(body) {
         if (body.email != undefined && body.email != "" && body.hashPassword != undefined && body.hashPassword != "") {
@@ -20,7 +20,7 @@ class login {
             var response = {};
             response.Friendship = this.store.getTable("Friendship").filter(f => f.idUser1 == user.idUser || f.idUser2 == user.idUser2);
 
-            response.User = this.store.getTable("User").filter(u => u.idUser = user.idUser || functions.searchObjectInArray(response.Friendship, u.idUser, "idUser2") != undefined);
+            response.User = this.store.getTable("User").filter(u => u.idUser == user.idUser || functions.searchObjectInArray(response.Friendship, u.idUser, "idUser2") != undefined);
 
             // idUser1 must be the id of the user making the request
             for (let i = 0; i < response.Friendship.lenght; i++) {
@@ -50,7 +50,7 @@ class login {
             response.MyCommitment = this.store.getTable("MyCommitment").filter(c => c.idUser == user.idUser);
             response.MyStep = functions.getObjectsArray2inArray1(response.MyCommitment, "idCommitment", this.store.getTable("MyStep"), "idCommitment");
             response.MyStepDone = functions.getObjectsArray2inArray1(response.MyStep, "idMyStep", this.store.getTable("MyStepDone"), "idMyStep");
-
+            response.SessionId = await this.store.login(user.idUser);
             return { code: 200, response: response };
         }
         return { code: 404, response: '{message: "Login failed. Param was wrong"}' }

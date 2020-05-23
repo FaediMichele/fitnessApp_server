@@ -3,14 +3,16 @@ const url = require("url");
 
 const Storage = require("./database");
 const Login = require("./login");
+const User = require("./user");
 
 const port = 8080;
 
 var store = new Storage();
 var login = new Login(store);
+var user = new User(store);
 
 
-var services = [login]
+var services = [login, user]
 
 const app = async () => {
     http.createServer(function (req, res) {
@@ -26,14 +28,14 @@ const app = async () => {
             let response = "{}";
             if (body.to != undefined && body.to != "") {
                 for (let i = 0; i < services.length; i++) {
-                    if (services[i].service = body.to) {
+                    if (services[i].service == body.to) {
                         let d = await services[i].managePost(body);
                         code = d.code;
                         response = d.response;
+                        break;
                     }
                 }
             }
-
             res.writeHead(code);
             res.write(JSON.stringify(response));
             res.end();

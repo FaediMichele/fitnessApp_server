@@ -19,4 +19,14 @@ function getObjectsArray2inArray1(array1, fieldArray1, array2, fieldArray2) {
     return ret;
 };
 
-module.exports = { getObjectsArray2inArray1, searchObjectInArray };
+function getBestInArray(array, arrayField, f) {
+    let ret = array[0];
+    for (let i = 1; i < array.length; i++) {
+        if (f(array[i][arrayField], ret[arrayField]) > 0) {
+            ret = array[i];
+        }
+    }
+    return ret;
+}
+
+module.exports = { getObjectsArray2inArray1, searchObjectInArray, getBestInArray };

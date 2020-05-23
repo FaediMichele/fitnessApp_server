@@ -155,21 +155,5 @@
             "result": 300
         }
     ],
-    "Session": [
-        {
-            "idUser": 123,
-            "lastLogin": "2020-05-23T15:23:42.819Z",
-            "idSession": "fd3902e50e409e31c3110d18423df321becbad25"
-        },
-        {
-            "idUser": 123,
-            "lastLogin": "2020-05-23T15:25:39.535Z",
-            "idSession": "ed6bbf6b3b60470a316a706f3098dcad97e365b9"
-        },
-        {
-            "idUser": 123,
-            "lastLogin": "2020-05-23T15:27:19.658Z",
-            "idSession": "93a784622db85fa5ea4ca5ff91731e689858349d"
-        }
-    ]
+    "Session": []
 }
