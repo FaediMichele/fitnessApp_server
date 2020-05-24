@@ -15,12 +15,13 @@ class school {
     async manageGet(queryString) { }
 
     async managePost(body) {
-        if (body.method == "insertSchool") {
+        let idUser = this.store.getIdUser(body.idSession);
+        if (body.method == "insertSchool" && idUser != undefined) {
             let ok = true;
             let ids = [];
             let addSchool = (s) => {
                 this.lastIdSchool++;
-                let school = { idSchool: this.lastIdSchool, name: s.name, email: s.email, address: s.address, idTrainer: this.store.getIdUser(body.idSession) };
+                let school = { idSchool: this.lastIdSchool, name: s.name, email: s.email, address: s.address, idTrainer: idUser };
                 if (school.name != undefined && school.email != undefined && school.address != undefined && school.idTrainer != undefined) {
                     this.schools.push(school);
                     ids.push(this.lastIdSchool);
@@ -65,6 +66,9 @@ class school {
         } else if (body.method == "updateSchool") {
             let updateSchool = (s) => {
                 let i = functions.getNumItemInArray(this.schools, "idSchool", s.idSchool);
+                if (this.schools[i].idTrainer != idUser) {
+                    return;
+                }
                 if (s.name != undefined) {
                     this.schools[i].name = s.name;
                 }

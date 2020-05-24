@@ -30,11 +30,27 @@ function getBestInArray(array, arrayField, f) {
 }
 
 function getNumItemInArray(array, field, f) {
-    for (let i = 0; i < array.length; i++) {
-        if (array[i][field] == f) {
-            return i;
+    if (Array.isArray(field) && Array.isArray(f) && f.length == field.length) {
+        for (let i = 0; i < array.length; i++) {
+            let ok = true;
+            for (let j = 0; j < field.length; j++) {
+                if (array[i][field[j]] != f[j]) {
+                    ok = false;
+                    break;
+                }
+            }
+            if (ok) {
+                return i;
+            }
+        }
+    } else {
+        for (let i = 0; i < array.length; i++) {
+            if (array[i][field] == f) {
+                return i;
+            }
         }
     }
+    return undefined;
 }
 
 module.exports = { getObjectsArray2inArray1, searchObjectInArray, getBestInArray, getNumItemInArray };
