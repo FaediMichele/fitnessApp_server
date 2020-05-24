@@ -19,11 +19,12 @@ class school {
         if (body.method == "insertSchool" && idUser != undefined) {
             let ok = true;
             let ids = [];
+            let result = [];
             let addSchool = (s) => {
                 this.lastIdSchool++;
                 let school = { idSchool: this.lastIdSchool, name: s.name, email: s.email, address: s.address, idTrainer: idUser };
                 if (school.name != undefined && school.email != undefined && school.address != undefined && school.idTrainer != undefined) {
-                    this.schools.push(school);
+                    result.push(school);
                     ids.push(this.lastIdSchool);
                 } else {
                     ok = false;
@@ -37,17 +38,19 @@ class school {
             if (!ok) {
                 return { code: 400, response: '{message: "bad request. school param was wrong"}' };
             }
+            this.schools = this.schools.concat(result);
             this.store.saveData("School", this.schools);
             return { code: 200, response: ids };
         } else if (body.method == "insertCourse") {
             let ok = true;
             let ids = [];
+            let result = [];
             let addCourse = (s) => {
                 this.lastIdCourse++;
                 let course = { idCourse: this.lastIdCourse, idSchool: s.idSchool, cat: s.cat, name: s.name, desc: s.desc, minimumLevel: s.minimumLevel };
                 if (course.idCourse != undefined && course.idSchool != undefined && course.cat != undefined && course.name != undefined
                     && course.desc != undefined && course.minimumLevel != undefined && this.store.searchKey("School", "idSchool", course.idSchool) != undefined) {
-                    this.courses.push(course);
+                    result.push(course);
                     ids.push(this.lastIdCourse);
                 } else {
                     ok = false;
@@ -61,6 +64,7 @@ class school {
             if (!ok) {
                 return { code: 400, response: '{message: "bad request. course param was wrong"}' };
             }
+            this.courses = this.courses.concat(result);
             this.store.saveData("Course", this.courses);
             return { code: 200, response: ids };
         } else if (body.method == "updateSchool") {

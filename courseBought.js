@@ -15,10 +15,11 @@ class CourseBought {
         let idUser = this.store.getIdUser(body.idSession);
         if (body.method == "insertCourseBought") {
             let ok = true;
+            let result = [];
             let addCourseBought = (c) => {
                 if (c.idCourse != undefined &&
                     this.store.searchKey("Course", "idCourse", c.idCourse) != undefined) {
-                    this.Courses.push({ idUser: idUser, idCourse: c.idCourse, level: 1, purchaseDate: new Date() });
+                    result.push({ idUser: idUser, idCourse: c.idCourse, level: 1, purchaseDate: new Date() });
                 } else {
                     ok = false;
                 }
@@ -31,6 +32,7 @@ class CourseBought {
             if (!ok) {
                 return { code: 400, response: '{message: "bad request. param was wrong"}' };
             } else {
+                this.Courses = this.Courses.concat(result);
                 this.store.saveData("CourseBought", this.Courses);
                 return { code: 200, response: '{message: "ok"}' };
             }
