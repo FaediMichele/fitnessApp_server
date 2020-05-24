@@ -1,6 +1,6 @@
 var functions = require("./util.js");
 
-const service = "login";
+const service = "friend";
 
 class friend {
     constructor(store) {

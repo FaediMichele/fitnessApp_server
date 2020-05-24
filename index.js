@@ -7,7 +7,9 @@ const User = require("./user");
 const School = require("./school");
 const CourseBought = require("./courseBought");
 const ExerciseInProgress = require("./exerciseInProgress");
-const Friend = require("./Friend");
+const Friend = require("./friend");
+const History = require("./history");
+const Review = require("./review");
 
 const port = 8080;
 
@@ -18,9 +20,11 @@ var school = new School(store);
 var courseBought = new CourseBought(store);
 var exerciseInProgress = new ExerciseInProgress(store);
 var friend = new Friend(store);
+var history = new History(store);
+var review = new Review(store);
 
 
-var services = [login, user, school, courseBought, exerciseInProgress, friend];
+var services = [login, user, school, courseBought, exerciseInProgress, friend, history, review];
 
 const app = async () => {
     http.createServer(function (req, res) {
