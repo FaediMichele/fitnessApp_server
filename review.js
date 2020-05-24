@@ -16,7 +16,7 @@ class review {
         if (body.method == "addReview") {
             let add = h => {
                 if (this.store.searchKey("School", "idSchool", h.idSchool)) {
-                    this.history.push({ idUser: idUser, val: h.val, comment: h.comment, idSchool: h.idSchool });
+                    this.review.push({ idUser: idUser, val: h.val < 5 ? h.val < 0 ? 0 : h.val : 5, comment: h.comment, idSchool: h.idSchool });
                 }
             }
             if (Array.isArray(body.data)) {
@@ -25,7 +25,9 @@ class review {
                 add(body.data);
             }
             this.store.saveData("Review", this.review);
+            return { code: 200, response: '{message: "ok"}' };
         }
+        return { code: 400, response: '{message: "method not found"}' };
     }
 }
 

@@ -27,6 +27,11 @@
             "idFriendship": 1,
             "idUser1": 123,
             "idUser2": 321
+        },
+        {
+            "idFriendship": 2,
+            "idUser1": 123,
+            "idUser2": 322
         }
     ],
     "Message": [
@@ -36,6 +41,13 @@
             "message": "Ciao questo è un messaggio",
             "idSender": 123,
             "idReceiver": 321
+        },
+        {
+            "idFriendship": 2,
+            "date": "2020-05-24T14:25:43.323Z",
+            "message": "ciao",
+            "idSender": 123,
+            "idReceiver": 322
         }
     ],
     "Level": [
@@ -78,10 +90,10 @@
     "Inscription": [],
     "Review": [
         {
-            "idSchool": 1,
             "idUser": 123,
-            "val": 4,
-            "comment": "la palestra è piccola"
+            "val": 2,
+            "comment": "la palestra è piccola",
+            "idSchool": 1
         }
     ],
     "Course": [
@@ -120,6 +132,16 @@
             "name": "streching",
             "desc": "Esercizio pensato per chi non è sciolto e vuole diventare più agile",
             "video": "na"
+        },
+        {
+            "idExercise": 91,
+            "idCourse": 420,
+            "level": 2,
+            "PE": 120,
+            "duration": 10,
+            "name": "riscaldamento",
+            "desc": "Esercizio pensato per chi non è sciolto e vuole diventare più agile",
+            "video": "na"
         }
     ],
     "Step": [
@@ -137,10 +159,10 @@
     "ExerciseInProgress": [
         {
             "idUser": 123,
-            "idExercise": 90,
-            "numStep": 1,
-            "progression": 400,
-            "lastEdit": "2020-05-02T20:25:43Z"
+            "idExercise": 91,
+            "progression": 100,
+            "numStep": 10,
+            "lastEdit": "2020-05-24T14:18:25.868Z"
         }
     ],
     "CourseBought": [
@@ -164,6 +186,13 @@
             "desc": "Fare il progetto in android",
             "creationDate": "2020-05-02T20:25:43Z",
             "idUser": 123
+        },
+        {
+            "idCommitment": 74,
+            "name": "dimagrire",
+            "desc": "dimagrire per l'estate",
+            "creationDate": "2020-05-24T14:40:57.155Z",
+            "idUser": 123
         }
     ],
     "MyStep": [
@@ -175,6 +204,24 @@
             "max": 300,
             "repetitionDay": 1,
             "type": "incremental"
+        },
+        {
+            "idMyStep": 43,
+            "idCommitment": 74,
+            "name": "mangiare mele",
+            "unitMeasure": "mele",
+            "max": 5,
+            "repetitionDay": 1,
+            "type": "progresion"
+        },
+        {
+            "idMyStep": 44,
+            "idCommitment": 74,
+            "name": "correre 5 km",
+            "unitMeasure": "km",
+            "max": 5000,
+            "repetitionDay": 7,
+            "type": "progresion"
         }
     ],
     "MyStepDone": [
@@ -182,6 +229,16 @@
             "idMyStep": 42,
             "dateStart": "2020-05-03T20:25:43Z",
             "result": 300
+        },
+        {
+            "idMyStep": 43,
+            "dateStart": "2020-05-24T14:40:57.155Z",
+            "result": 0
+        },
+        {
+            "idMyStep": 44,
+            "dateStart": "2020-05-24T14:40:57.155Z",
+            "result": 0
         }
     ],
     "Session": [

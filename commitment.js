@@ -23,18 +23,21 @@ class commitment {
                 idCommitment: this.lastCommitmentId,
                 name: body.data.commitment.name, desc: body.data.commitment.desc, creationDate: new Date(), idUser: idUser
             });
-            body.data.steps.array.forEach(e => {
+            let ids = [];
+            body.data.steps.forEach(e => {
                 this.lastStepId++;
                 this.step.push({
                     idMyStep: this.lastStepId, idCommitment: this.lastCommitmentId,
                     name: e.name, unitMeasure: e.unitMeasure, max: e.max, repetitionDay: e.repetitionDay, type: e.type
                 });
                 this.stepDone.push({ idMyStep: this.lastStepId, dateStart: new Date(), result: 0 });
+                ids.push(this.lastStepId);
             });
 
             this.store.saveData("MyCommitment", this.commitment);
             this.store.saveData("MyStep", this.step);
             this.store.saveData("MyStepDone", this.stepDone);
+            return { code: 200, response: { idCommitment: this.lastCommitmentId, idSteps: ids } };
         } else if (body.method == "updateMyStepDone" && body.data.idMyStep != undefined) {
             let max = undefined;
             let maxI = -1;
@@ -48,12 +51,16 @@ class commitment {
             }
             this.stepDone[maxI].result = parseInt(body.data.result);
             this.store.saveData("MyStepDone", this.stepDone);
+            return { code: 200, response: '{message: "ok"}' };
         } else if (body.method == "addMyStepDone" && body.data.idMyStep != undefined) {
             if (this.store.searchKey("MyStep", "idMyStep", body.data.idMyStep) != undefined) {
                 this.stepDone.push({ idUser: idUser, dateStart: new Date(), result: 0 });
                 this.store.saveData("MyStepDone", this.stepDone);
+                return { code: 200, response: '{message: "ok"}' };
             }
+            return { code: 400, response: '{message: "step no found"}' };
         }
+        return { code: 400, response: '{message: "param was wrong"}' };
     }
 }
 

@@ -18,13 +18,29 @@ var test = async () => {
 
 
     body = JSON.stringify({
-        to: "courseBought", method: "updateCourseBought",
+        to: "commitment", method: "addCommitment",
         idSession: loginData.SessionId,
         data:
-            [{
-                idCourse: 422,
-                level: 20
-            }]
+            {
+                commitment:{
+                    name: "dimagrire",
+                    desc: "dimagrire per l'estate"
+                },
+                steps:[{
+                    name: "mangiare mele",
+                    unitMeasure: "mele",
+                    max: 5,
+                    repetitionDay: 1,
+                    type: "progresion"
+                },
+                {
+                    name: "correre 5 km",
+                    unitMeasure: "km",
+                    max: 5000,
+                    repetitionDay: 7,
+                    type: "progresion"
+                }]
+            }
     });
     fetch("http://localhost:8080", { method: "POST", body: body })
         .then(data => data.json())

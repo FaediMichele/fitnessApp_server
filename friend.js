@@ -25,12 +25,13 @@ class friend {
             this.store.saveData("Friendship", this.friendship);
             return { code: 200, response: this.lastFriendshipId };
         } else if (body.method == "addMessage" && body.data.idFriendship != undefined && body.data.message != undefined) {
-            let tmp = this.store.searchKey("Frienship", "idFriendship", body.data.idFriendship)
+            let tmp = this.store.searchKey("Friendship", "idFriendship", body.data.idFriendship)
             let otherId = tmp.idUser1 == idUser ? tmp.idUser2 : tmp.idUser1;
             this.message.push({ idFriendship: body.data.idFriendship, date: new Date(), message: body.data.message, idSender: idUser, idReceiver: otherId });
             this.store.saveData("Message", this.message);
             return { code: 200, response: '{message: "ok"}' };
         }
+        return { code: 400, response: '{message: "method not found"}' };
     }
 }
 
