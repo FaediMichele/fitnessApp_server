@@ -38,7 +38,7 @@ const app = async () => {
         if(req.url!= "/"){
             queryParam = url.parse(req.url, true).query;
         }
-        console.log(queryParam);
+        console.log(queryParam + "ciao");
         req.on("data", function (chunk) {
             if(queryParam!=undefined){
                 for(let i = 0; i < servicesWithChunk.length; i++){
@@ -74,7 +74,9 @@ const app = async () => {
                 if (body.to != undefined && body.to != "") {
                     for (let i = 0; i < services.length; i++) {
                         if (services[i].service == body.to) {
+                            console.log(body);
                             let d = await services[i].managePost(body);
+                            console.log(d);
                             code = d.code;
                             response = d.response;
                             break;
