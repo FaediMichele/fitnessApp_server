@@ -15,7 +15,7 @@ class review {
         let idUser = this.store.getIdUser(body.idSession);
         if (body.method == "addReview") {
             let add = h => {
-                if (this.store.searchKey("School", "idSchool", h.idSchool)) {
+                if (this.store.searchKey("School", "idSchool", h.idSchool) != undefined) {
                     this.review.push({ idUser: idUser, val: h.val < 5 ? h.val < 0 ? 0 : h.val : 5, comment: h.comment, idSchool: h.idSchool });
                 }
             }

@@ -15,7 +15,7 @@ class history {
         let idUser = this.store.getIdUser(body.idSession);
         if (body.method == "addHistory") {
             let add = h => {
-                if (this.store.searchKey("Exercise", "idExercise", h.idExercise)) {
+                if (this.store.searchKey("Exercise", "idExercise", h.idExercise) != undefined) {
                     this.history.push({ idUser: idUser, date: new Date(), idExercise: h.idExercise });
                 }
             }

@@ -80,7 +80,7 @@ class database {
         if (table != undefined) {
             for (let i = 0; i < table.length; i++) {
                 if (table[i][fieldKeyName] == keyToSearch) {
-                    return table[i];
+                    return i;
                 }
             }
         }

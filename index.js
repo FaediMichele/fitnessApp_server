@@ -11,6 +11,7 @@ const Friend = require("./friend");
 const History = require("./history");
 const Review = require("./review");
 const Commitment = require("./commitment");
+const FileManager = require("./fileManager");
 
 const port = 8080;
 
@@ -24,14 +25,30 @@ var friend = new Friend(store);
 var history = new History(store);
 var review = new Review(store);
 var commitment = new Commitment(store);
+var fileManager = new FileManager(store);
 
 
 var services = [login, user, school, courseBought, exerciseInProgress, friend, history, review, commitment];
+var servicesWithChunk = [fileManager];
 
 const app = async () => {
     http.createServer(function (req, res) {
         var body = [];
+        let queryParam = undefined;
+        if(req.url!= "/"){
+            console.log(url.parse(req.url, true));
+            queryParam = url.parse(req.url, true).query;
+        }
+        console.log(queryParam);
         req.on("data", function (chunk) {
+            if(queryParam!=undefined){
+                for(let i = 0; i < servicesWithChunk.length; i++){
+                    if(servicesWithChunk[i].service == queryParam.to){
+                        servicesWithChunk[i].manageChunk(queryParam, chunk);
+                        return;
+                    }
+                }
+            }
             body.push(chunk);
         });
         req.on("end", async function () {
@@ -40,6 +57,16 @@ const app = async () => {
             }
             let code = 500;
             let response = "{}";
+            if(queryParam != undefined){
+                for (let i = 0; i < servicesWithChunk.length; i++) {
+                    if (servicesWithChunk[i].service == queryParam.to) {
+                        let d = await servicesWithChunk[i].managePost(queryParam);
+                        code = d.code;
+                        response = d.response;
+                        break;
+                    }
+                }
+            } else{
             if (body.to != undefined && body.to != "") {
                 for (let i = 0; i < services.length; i++) {
                     if (services[i].service == body.to) {
@@ -50,6 +77,7 @@ const app = async () => {
                     }
                 }
             }
+        }
             res.writeHead(code);
             res.write(JSON.stringify(response));
             res.end();
