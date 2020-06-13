@@ -11,7 +11,20 @@ class fileManager {
         this.streams = [];
     }
 
-    async manageGet(queryString) { }
+    async manageGet(queryString, res) {
+        if(queryString.method == "getVideo" && queryString.idExercise != undefined  && queryString.idExercise != ""){
+            let path = "./files/" + queryString.idExercise+".mp4";
+            if(fs.existsSync(path)){
+                fs.createReadStream(path).pipe(res);
+                console.log("here2");
+                return {code: 200, response: undefined};
+            } else{
+                return {code: 400, response: '{message: "video not found"}'};
+            }
+            
+        }
+        return { code: 400, response: '{message: "method not found"}' };
+    }
 
     async managePost(queryString) {
         if(this.streams[queryString.idExercise] != undefined){

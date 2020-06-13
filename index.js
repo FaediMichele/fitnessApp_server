@@ -36,7 +36,6 @@ const app = async () => {
         var body = [];
         let queryParam = undefined;
         if(req.url!= "/"){
-            console.log(url.parse(req.url, true));
             queryParam = url.parse(req.url, true).query;
         }
         console.log(queryParam);
@@ -60,28 +59,30 @@ const app = async () => {
             if(queryParam != undefined){
                 for (let i = 0; i < servicesWithChunk.length; i++) {
                     if (servicesWithChunk[i].service == queryParam.to) {
-                        let d = await servicesWithChunk[i].managePost(queryParam);
+                        let d;
+                        if(req.method == "POST"){
+                            d = await servicesWithChunk[i].managePost(queryParam, res);
+                        } else{
+                            d = await servicesWithChunk[i].manageGet(queryParam, res);
+                        }
                         code = d.code;
                         response = d.response;
                         break;
                     }
                 }
             } else{
-            if (body.to != undefined && body.to != "") {
-                for (let i = 0; i < services.length; i++) {
-                    if (services[i].service == body.to) {
-                        let d = await services[i].managePost(body);
-                        code = d.code;
-                        response = d.response;
-                        break;
+                if (body.to != undefined && body.to != "") {
+                    for (let i = 0; i < services.length; i++) {
+                        if (services[i].service == body.to) {
+                            let d = await services[i].managePost(body);
+                            code = d.code;
+                            response = d.response;
+                            break;
+                        }
                     }
                 }
             }
-        }
-            res.writeHead(code);
-            res.write(JSON.stringify(response));
             res.end();
-
         });
     }).listen(port);
     console.log("listening on " + port);
