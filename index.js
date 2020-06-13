@@ -74,9 +74,7 @@ const app = async () => {
                 if (body.to != undefined && body.to != "") {
                     for (let i = 0; i < services.length; i++) {
                         if (services[i].service == body.to) {
-                            console.log(body);
                             let d = await services[i].managePost(body);
-                            console.log(d);
                             code = d.code;
                             response = d.response;
                             break;
@@ -84,7 +82,8 @@ const app = async () => {
                     }
                 }
             }
-            res.end();
+            res.writeHead(parseInt(200), {"Content-Type": "application/json", "chaset": "utf-8"});
+            res.end(JSON.stringify(response));
         });
     }).listen(port);
     console.log("listening on " + port);
