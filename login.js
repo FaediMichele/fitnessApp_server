@@ -11,8 +11,8 @@ class login {
     async manageGet(queryString) { }
 
     async managePost(body) {
-        if (body.email != undefined && body.email != "" && body.hashPassword != undefined && body.hashPassword != "") {
-            var user = this.store.getTable("User").filter(u => u.email == body.email && u.hashPassword == body.hashPassword)[0];
+        if (body.data.email != undefined && body.data.email != "" && body.data.hashPassword != undefined && body.data.hashPassword != "") {
+            var user = this.store.getTable("User").filter(u => u.email == body.data.email && u.hashPassword == body.data.hashPassword)[0];
             if (user == undefined) {
                 return { code: 401, response: '{message: "Login failed. Did not find any user with those credential"}' };
             }
