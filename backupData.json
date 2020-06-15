@@ -68,7 +68,7 @@
             "idTrainer": 321
         }
     ],
-    "Inscription": [],
+    "Inscription": [{"idUser": 123, "idSchool": 1}, {"idUser": 123, "idSchool": 2}],
     "Review": [
         {
             "idSchool": 1,

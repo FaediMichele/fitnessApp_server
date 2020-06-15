@@ -38,6 +38,19 @@ class commitment {
             this.store.saveData("MyStep", this.step);
             this.store.saveData("MyStepDone", this.stepDone);
             return { code: 200, response: { idCommitment: this.lastCommitmentId, idSteps: ids } };
+        } else if(body.method == "deleteMyCommitment" && body.data.idCommitment != undefined) {
+            this.commitment = this.commitment.filter(c => c.idCommitment != body.data.idCommitment);
+            this.step = this.step.filter(s =>{
+                if(s.idCommitment = body.idCommitment){
+                    this.stepDone = this.stepDone.filter(sd => sd.idMyStep != s.idMyStep);
+                    return false;
+                }
+                return true;
+            });
+            this.store.saveData("MyCommitment", this.commitment);
+            this.store.saveData("MyStep", this.step);
+            this.store.saveData("MyStepDone", this.stepDone);
+            return { code: 200, response: '{message: "ok"}' };
         } else if (body.method == "updateMyStepDone" && body.data.idMyStep != undefined) {
             let max = undefined;
             let maxI = -1;

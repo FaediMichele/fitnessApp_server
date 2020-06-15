@@ -41,9 +41,10 @@ class login {
             response.User.concat(functions.getObjectsArray2inArray1(response.School, "idTrainer", this.store.getTable("User"), "idUSer"));
             response.Review = this.store.getTable("Review").filter(r => r.idUser == user.idUser);
             response.CourseBought = this.store.getTable("CourseBought").filter(c => c.idUser == user.idUser);
-            response.Course = functions.getObjectsArray2inArray1(response.CourseBought, "idCourse", this.store.getTable("Course"), "idCourse").concat(
-                functions.getObjectsArray2inArray1(response.School, "idSchool", this.store.getTable("Course"), "idSchool")
-            );
+            //response.Course = functions.getObjectsArray2inArray1(response.CourseBought, "idCourse", this.store.getTable("Course"), "idCourse");
+
+        
+            response.Course = functions.getObjectsArray2inArray1(response.School, "idSchool", this.store.getTable("Course"), "idSchool");
             response.Exercise = this.store.getTable("Exercise").filter(e => functions.searchObjectInArray(response.CourseBought, e.idCourse, "idCourse") != undefined);
             response.Step = this.store.getTable("Step").filter(s => functions.searchObjectInArray(response.Exercise, s.idExercise, "idExercise"));
             response.ExerciseInProgress = this.store.getTable("ExerciseInProgress").filter(ex => ex.idUser == user.idUser);

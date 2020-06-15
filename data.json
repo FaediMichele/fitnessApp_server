@@ -65,7 +65,7 @@
       "idTrainer": 123
     }
   ],
-  "Inscription": [],
+  "Inscription": [{"idUser": 123, "idSchool": 1}, {"idUser": 123, "idSchool": 2}],
   "Review": [
     {
       "idUser": 123,
@@ -171,6 +171,78 @@
       "desc": "dimagrire per l'estate",
       "creationDate": "2020-05-24T14:40:57.155Z",
       "idUser": 123
+    },
+    {
+      "idCommitment": 75,
+      "name": "Dimagrire",
+      "desc": "Dimagrire 10kg prima dell'estate",
+      "creationDate": "2020-06-15T10:11:18.205Z"
+    },
+    {
+      "idCommitment": 76,
+      "name": "Dimagrire",
+      "desc": "Dimagrire 10kg prima dell'estate",
+      "creationDate": "2020-06-15T10:12:04.606Z"
+    },
+    {
+      "idCommitment": 77,
+      "name": "Dimagrire",
+      "desc": "Dimagrire 10kg prima dell'estate",
+      "creationDate": "2020-06-15T10:12:20.537Z"
+    },
+    {
+      "idCommitment": 78,
+      "name": "Dimagrire",
+      "desc": "Dimagrire 10kg prima dell'estate",
+      "creationDate": "2020-06-15T10:14:29.967Z"
+    },
+    {
+      "idCommitment": 79,
+      "name": "Dimagrire",
+      "desc": "Dimagrire 10kg prima dell'estate",
+      "creationDate": "2020-06-15T10:19:01.537Z"
+    },
+    {
+      "idCommitment": 80,
+      "name": "Dimagrire",
+      "desc": "Dimagrire 10kg prima dell'estate",
+      "creationDate": "2020-06-15T10:21:05.876Z"
+    },
+    {
+      "idCommitment": 81,
+      "name": "Dimagrire",
+      "desc": "Dimagrire 10kg prima dell'estate",
+      "creationDate": "2020-06-15T10:50:01.122Z"
+    },
+    {
+      "idCommitment": 82,
+      "name": "Dimagrire",
+      "desc": "Dimagrire 10kg prima dell'estate",
+      "creationDate": "2020-06-15T10:51:16.282Z"
+    },
+    {
+      "idCommitment": 83,
+      "name": "Dimagrire",
+      "desc": "Dimagrire 10kg prima dell'estate",
+      "creationDate": "2020-06-15T10:52:48.272Z"
+    },
+    {
+      "idCommitment": 84,
+      "name": "Dimagrire",
+      "desc": "Dimagrire 10kg prima dell'estate",
+      "creationDate": "2020-06-15T10:53:21.442Z"
+    },
+    {
+      "idCommitment": 85,
+      "name": "Dimagrire",
+      "desc": "Dimagrire 10kg prima dell'estate",
+      "creationDate": "2020-06-15T10:54:43.373Z"
+    },
+    {
+      "idCommitment": 86,
+      "name": "Dimagrire",
+      "desc": "Dimagrire 10kg prima dell'estate",
+      "creationDate": "2020-06-15T10:58:03.822Z"
     }
   ],
   "MyStep": [
@@ -190,7 +262,7 @@
       "unitMeasure": "mele",
       "max": 5,
       "repetitionDay": 1,
-      "type": "progresion"
+      "type": "progression"
     },
     {
       "idMyStep": 44,
@@ -199,19 +271,229 @@
       "unitMeasure": "km",
       "max": 5000,
       "repetitionDay": 7,
-      "type": "progresion"
+      "type": "progression"
+    },
+    {
+      "idMyStep": 45,
+      "idCommitment": 80,
+      "name": "Mangiare mele",
+      "unitMeasure": "mele",
+      "max": 5,
+      "repetitionDay": 1,
+      "type": "progression"
+    },
+    {
+      "idMyStep": 46,
+      "idCommitment": 80,
+      "name": "Corsa",
+      "unitMeasure": "km",
+      "max": 2,
+      "repetitionDay": 1,
+      "type": "progression"
+    },
+    {
+      "idMyStep": 47,
+      "idCommitment": 80,
+      "name": "Studiare",
+      "unitMeasure": "ore",
+      "max": 12,
+      "repetitionDay": 2,
+      "type": "progression"
+    },
+    {
+      "idMyStep": 48,
+      "idCommitment": 81,
+      "name": "Mangiare mele",
+      "unitMeasure": "mele",
+      "max": 5,
+      "repetitionDay": 1,
+      "type": "progression"
+    },
+    {
+      "idMyStep": 49,
+      "idCommitment": 81,
+      "name": "Corsa",
+      "unitMeasure": "km",
+      "max": 2,
+      "repetitionDay": 1,
+      "type": "progression"
+    },
+    {
+      "idMyStep": 50,
+      "idCommitment": 81,
+      "name": "Studiare",
+      "unitMeasure": "ore",
+      "max": 12,
+      "repetitionDay": 2,
+      "type": "progression"
+    },
+    {
+      "idMyStep": 51,
+      "idCommitment": 82,
+      "name": "Mangiare mele",
+      "unitMeasure": "mele",
+      "max": 5,
+      "repetitionDay": 1,
+      "type": "progression"
+    },
+    {
+      "idMyStep": 52,
+      "idCommitment": 82,
+      "name": "Corsa",
+      "unitMeasure": "km",
+      "max": 2,
+      "repetitionDay": 1,
+      "type": "progression"
+    },
+    {
+      "idMyStep": 53,
+      "idCommitment": 82,
+      "name": "Studiare",
+      "unitMeasure": "ore",
+      "max": 12,
+      "repetitionDay": 2,
+      "type": "progression"
+    },
+    {
+      "idMyStep": 54,
+      "idCommitment": 83,
+      "name": "Mangiare mele",
+      "unitMeasure": "mele",
+      "max": 5,
+      "repetitionDay": 1,
+      "type": "progression"
+    },
+    {
+      "idMyStep": 55,
+      "idCommitment": 83,
+      "name": "Corsa",
+      "unitMeasure": "km",
+      "max": 2,
+      "repetitionDay": 1,
+      "type": "progression"
+    },
+    {
+      "idMyStep": 56,
+      "idCommitment": 83,
+      "name": "Studiare",
+      "unitMeasure": "ore",
+      "max": 12,
+      "repetitionDay": 2,
+      "type": "progression"
+    },
+    {
+      "idMyStep": 57,
+      "idCommitment": 84,
+      "name": "Mangiare mele",
+      "unitMeasure": "mele",
+      "max": 5,
+      "repetitionDay": 1,
+      "type": "progression"
+    },
+    {
+      "idMyStep": 58,
+      "idCommitment": 84,
+      "name": "Corsa",
+      "unitMeasure": "km",
+      "max": 2,
+      "repetitionDay": 1,
+      "type": "progression"
+    },
+    {
+      "idMyStep": 59,
+      "idCommitment": 84,
+      "name": "Studiare",
+      "unitMeasure": "ore",
+      "max": 12,
+      "repetitionDay": 2,
+      "type": "progression"
+    },
+    {
+      "idMyStep": 60,
+      "idCommitment": 85,
+      "name": "Mangiare mele",
+      "unitMeasure": "mele",
+      "max": 5,
+      "repetitionDay": 1,
+      "type": "progression"
+    },
+    {
+      "idMyStep": 61,
+      "idCommitment": 85,
+      "name": "Corsa",
+      "unitMeasure": "km",
+      "max": 2,
+      "repetitionDay": 1,
+      "type": "progression"
+    },
+    {
+      "idMyStep": 62,
+      "idCommitment": 85,
+      "name": "Studiare",
+      "unitMeasure": "ore",
+      "max": 12,
+      "repetitionDay": 2,
+      "type": "progression"
+    },
+    {
+      "idMyStep": 63,
+      "idCommitment": 86,
+      "name": "Mangiare mele",
+      "unitMeasure": "mele",
+      "max": 5,
+      "repetitionDay": 1,
+      "type": "progression"
+    },
+    {
+      "idMyStep": 64,
+      "idCommitment": 86,
+      "name": "Corsa",
+      "unitMeasure": "km",
+      "max": 2,
+      "repetitionDay": 1,
+      "type": "progression"
+    },
+    {
+      "idMyStep": 65,
+      "idCommitment": 86,
+      "name": "Studiare",
+      "unitMeasure": "ore",
+      "max": 12,
+      "repetitionDay": 2,
+      "type": "progression"
     }
   ],
   "MyStepDone": [
     { "idMyStep": 42, "dateStart": "2020-05-03T20:25:43Z", "result": 300 },
     { "idMyStep": 43, "dateStart": "2020-05-24T14:40:57Z", "result": 0 },
-    { "idMyStep": 44, "dateStart": "2020-05-24T14:40:57Z", "result": 0 }
+    { "idMyStep": 44, "dateStart": "2020-05-24T14:40:57Z", "result": 0 },
+    { "idMyStep": 45, "dateStart": "2020-06-15T10:21:05.876Z", "result": 0 },
+    { "idMyStep": 46, "dateStart": "2020-06-15T10:21:05.876Z", "result": 0 },
+    { "idMyStep": 47, "dateStart": "2020-06-15T10:21:05.876Z", "result": 0 },
+    { "idMyStep": 48, "dateStart": "2020-06-15T10:50:01.122Z", "result": 0 },
+    { "idMyStep": 49, "dateStart": "2020-06-15T10:50:01.122Z", "result": 0 },
+    { "idMyStep": 50, "dateStart": "2020-06-15T10:50:01.122Z", "result": 0 },
+    { "idMyStep": 51, "dateStart": "2020-06-15T10:51:16.282Z", "result": 0 },
+    { "idMyStep": 52, "dateStart": "2020-06-15T10:51:16.282Z", "result": 0 },
+    { "idMyStep": 53, "dateStart": "2020-06-15T10:51:16.282Z", "result": 0 },
+    { "idMyStep": 54, "dateStart": "2020-06-15T10:52:48.272Z", "result": 0 },
+    { "idMyStep": 55, "dateStart": "2020-06-15T10:52:48.272Z", "result": 0 },
+    { "idMyStep": 56, "dateStart": "2020-06-15T10:52:48.272Z", "result": 0 },
+    { "idMyStep": 57, "dateStart": "2020-06-15T10:53:21.442Z", "result": 0 },
+    { "idMyStep": 58, "dateStart": "2020-06-15T10:53:21.442Z", "result": 0 },
+    { "idMyStep": 59, "dateStart": "2020-06-15T10:53:21.442Z", "result": 0 },
+    { "idMyStep": 60, "dateStart": "2020-06-15T10:54:43.373Z", "result": 0 },
+    { "idMyStep": 61, "dateStart": "2020-06-15T10:54:43.373Z", "result": 0 },
+    { "idMyStep": 62, "dateStart": "2020-06-15T10:54:43.373Z", "result": 0 },
+    { "idMyStep": 63, "dateStart": "2020-06-15T10:58:03.822Z", "result": 0 },
+    { "idMyStep": 64, "dateStart": "2020-06-15T10:58:03.822Z", "result": 0 },
+    { "idMyStep": 65, "dateStart": "2020-06-15T10:58:03.822Z", "result": 0 }
   ],
   "Session": [
     {
       "idUser": 123,
-      "lastLogin": "2020-06-13T13:55:04Z",
-      "idSession": "8c88131766d2eca41c4439963945ab795d4dcd3a"
+      "lastLogin": "2020-06-15T14:04:05.272Z",
+      "idSession": "4da76187a6ca4403a6235b7f5583206fcdc30039"
     }
   ]
 }

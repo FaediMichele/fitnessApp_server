@@ -38,7 +38,6 @@ const app = async () => {
         if(req.url!= "/"){
             queryParam = url.parse(req.url, true).query;
         }
-        console.log(queryParam + "ciao");
         req.on("data", function (chunk) {
             if(queryParam!=undefined){
                 for(let i = 0; i < servicesWithChunk.length; i++){
