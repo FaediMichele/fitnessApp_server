@@ -34,19 +34,7 @@ var servicesWithChunk = [fileManager];
 const app = async () => {
     http.createServer(function (req, res) {
         var body = [];
-        let queryParam = undefined;
-        if(req.url!= "/"){
-            queryParam = url.parse(req.url, true).query;
-        }
         req.on("data", function (chunk) {
-            if(queryParam!=undefined){
-                for(let i = 0; i < servicesWithChunk.length; i++){
-                    if(servicesWithChunk[i].service == queryParam.to){
-                        servicesWithChunk[i].manageChunk(queryParam, chunk);
-                        return;
-                    }
-                }
-            }
             body.push(chunk);
         });
         req.on("end", async function () {
@@ -55,29 +43,13 @@ const app = async () => {
             }
             let code = 500;
             let response = "{}";
-            if(queryParam != undefined){
-                for (let i = 0; i < servicesWithChunk.length; i++) {
-                    if (servicesWithChunk[i].service == queryParam.to) {
-                        let d;
-                        if(req.method == "POST"){
-                            d = await servicesWithChunk[i].managePost(queryParam, res);
-                        } else{
-                            d = await servicesWithChunk[i].manageGet(queryParam, res);
-                        }
+            if (body.to != undefined && body.to != "") {
+                for (let i = 0; i < services.length; i++) {
+                    if (services[i].service == body.to) {
+                        let d = await services[i].managePost(body);
                         code = d.code;
                         response = d.response;
                         break;
-                    }
-                }
-            } else{
-                if (body.to != undefined && body.to != "") {
-                    for (let i = 0; i < services.length; i++) {
-                        if (services[i].service == body.to) {
-                            let d = await services[i].managePost(body);
-                            code = d.code;
-                            response = d.response;
-                            break;
-                        }
                     }
                 }
             }
