@@ -12,6 +12,7 @@ const History = require("./history");
 const Review = require("./review");
 const Commitment = require("./commitment");
 const FileManager = require("./fileManager");
+const Logout = require("./logout");
 
 const port = 8080;
 
@@ -26,16 +27,39 @@ var history = new History(store);
 var review = new Review(store);
 var commitment = new Commitment(store);
 var fileManager = new FileManager(store);
+var logout = new Logout(store);
 
+var postservices = [
+    login,
+    user,
+    school,
+    courseBought,
+    exerciseInProgress,
+    friend,
+    history,
+    review,
+    commitment,
+    fileManager,
+    logout,
+];
 
-var services = [login, user, school, courseBought, exerciseInProgress, friend, history, review, commitment];
-var servicesWithChunk = [fileManager];
+var chunkservices = [fileManager];
+var getservices = [fileManager];
 
 const app = async () => {
     http.createServer(function (req, res) {
         var body = [];
+        const query = url.parse(req.url, true).query;
         req.on("data", function (chunk) {
-            body.push(chunk);
+            let i = 0;
+            for (; i < chunkservices.length; i++) {
+                if (chunkservices[i].service == query.to) {
+                    chunkservices[i].manageChunk(chunk, query);
+                }
+            }
+            if (i == chunkservices.length) {
+                body.push(chunk);
+            }
         });
         req.on("end", async function () {
             if (body.length != 0) {
@@ -43,21 +67,55 @@ const app = async () => {
             }
             let code = 500;
             let response = "{}";
-            if (body.to != undefined && body.to != "") {
-                for (let i = 0; i < services.length; i++) {
-                    if (services[i].service == body.to) {
-                        let d = await services[i].managePost(body);
-                        code = d.code;
-                        response = d.response;
-                        break;
+            if (req.method == "POST") {
+                if (body.to != undefined && body.to != "") {
+                    let i = 0;
+                    for (; i < postservices.length; i++) {
+                        if (postservices[i].service == body.to) {
+                            let d = await postservices[i].managePost(body, query);
+                            code = d.code;
+                            response = d.response;
+                            break;
+                        }
+                    }
+                    if (i == postservices.length) {
+                        code = 400;
+                        response = '{"message": "function not found"}';
                     }
                 }
+                res.writeHead(code, {
+                    "Content-Type": "application/json",
+                });
+                res.write(JSON.stringify(response), "UTF-8");
             }
-            res.writeHead(parseInt(200), {"Content-Type": "application/json", "chaset": "utf-8"});
-            res.end(JSON.stringify(response));
+            if (req.method == "GET") {
+                if (query.to != undefined && query.to != "") {
+                    code = 400;
+                    response = '{"message": "function not found"}';
+                } else {
+                    for (; i < getservices.length; i++) {
+                        if (getservices[i].service == body.to) {
+                            await getservices[i].manageGet(query, res);
+                            break;
+                        }
+                    }
+                    if (i == getservices.length) {
+                        code = 400;
+                        response = '{"message": "function not found"}';
+                    }
+                }
+                if (response != "{}") {
+                    res.writeHead(code, {
+                        "Content-Type": "application/json",
+                    });
+                    res.write(JSON.stringify(response), "UTF-8");
+                }
+            }
+
+            res.end();
         });
     }).listen(port);
     console.log("listening on " + port);
-}
+};
 
 app();
