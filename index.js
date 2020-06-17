@@ -50,6 +50,7 @@ const app = async () => {
     http.createServer(function (req, res) {
         var body = [];
         const query = url.parse(req.url, true).query;
+        console.log(query);
         req.on("data", function (chunk) {
             let i = 0;
             for (; i < chunkservices.length; i++) {
@@ -67,6 +68,7 @@ const app = async () => {
             }
             let code = 500;
             let response = "{}";
+
             if (req.method == "POST") {
                 if (body.to != undefined && body.to != "") {
                     let i = 0;
@@ -89,10 +91,11 @@ const app = async () => {
                 res.write(JSON.stringify(response), "UTF-8");
             }
             if (req.method == "GET") {
-                if (query.to != undefined && query.to != "") {
+                if (query.to == undefined || query.to == "") {
                     code = 400;
                     response = '{"message": "function not found"}';
                 } else {
+                    let i = 0;
                     for (; i < getservices.length; i++) {
                         if (getservices[i].service == body.to) {
                             await getservices[i].manageGet(query, res);

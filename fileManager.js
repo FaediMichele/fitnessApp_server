@@ -15,7 +15,23 @@ class fileManager {
 
     async manageGet(queryString, res) {
         if (queryString.method == "getVideo" && queryString.idExercise != undefined && queryString.idExercise != "") {
-            let path = "./files/" + queryString.idExercise + ".mp4";
+            let path = "./files/Exercise-" + queryString.idExercise + ".mp4";
+            if (fs.existsSync(path)) {
+                fs.createReadStream(path).pipe(res);
+                console.log("here2");
+                res.writeHead(code, {
+                    "Content-Type": "video/mp4",
+                });
+                return { code: 200, response: undefined };
+            } else {
+                res.writeHead(code, {
+                    "Content-Type": "application/json",
+                });
+                res.write('{"message": "file does not exist"}');
+            }
+        }
+        if (queryString.method == "getVideo" && queryString.idCourse != undefined && queryString.idCourse != "") {
+            let path = "./files/Course-" + queryString.idCourse + ".mp4";
             if (fs.existsSync(path)) {
                 fs.createReadStream(path).pipe(res);
                 console.log("here2");
