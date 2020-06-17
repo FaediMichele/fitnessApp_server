@@ -18,13 +18,8 @@ class fileManager {
             let path = "./files/Exercise-" + queryString.idExercise + ".mp4";
             if (fs.existsSync(path)) {
                 fs.createReadStream(path).pipe(res);
-                console.log("here2");
-                res.writeHead(code, {
-                    "Content-Type": "video/mp4",
-                });
-                return { code: 200, response: undefined };
             } else {
-                res.writeHead(code, {
+                res.writeHead(400, {
                     "Content-Type": "application/json",
                 });
                 res.write('{"message": "file does not exist"}');

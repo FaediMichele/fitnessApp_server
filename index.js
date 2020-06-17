@@ -49,13 +49,16 @@ var getservices = [fileManager];
 const app = async () => {
     http.createServer(function (req, res) {
         var body = [];
-        const query = url.parse(req.url, true).query;
-        console.log(query);
+        let query = url.parse(req.url, true).query;
+        if (req.url != "/") {
+            query = url.parse(req.url, true).query;
+        }
         req.on("data", function (chunk) {
             let i = 0;
             for (; i < chunkservices.length; i++) {
                 if (chunkservices[i].service == query.to) {
-                    chunkservices[i].manageChunk(chunk, query);
+                    chunkservices[i].manageChunk(query, chunk);
+                    break;
                 }
             }
             if (i == chunkservices.length) {
@@ -89,6 +92,7 @@ const app = async () => {
                     "Content-Type": "application/json",
                 });
                 res.write(JSON.stringify(response), "UTF-8");
+                res.end();
             }
             if (req.method == "GET") {
                 if (query.to == undefined || query.to == "") {
@@ -97,14 +101,14 @@ const app = async () => {
                 } else {
                     let i = 0;
                     for (; i < getservices.length; i++) {
-                        if (getservices[i].service == body.to) {
+                        if (getservices[i].service == query.to) {
                             await getservices[i].manageGet(query, res);
                             break;
                         }
                     }
                     if (i == getservices.length) {
                         code = 400;
-                        response = '{"message": "function not found"}';
+                        response = '{"message": "function not foundo"}';
                     }
                 }
                 if (response != "{}") {
@@ -114,8 +118,6 @@ const app = async () => {
                     res.write(JSON.stringify(response), "UTF-8");
                 }
             }
-
-            res.end();
         });
     }).listen(port);
     console.log("listening on " + port);
