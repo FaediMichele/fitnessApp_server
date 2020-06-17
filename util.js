@@ -5,7 +5,7 @@ function searchObjectInArray(array, object, arrayField) {
         }
     }
     return undefined;
-};
+}
 
 function getObjectsArray2inArray1(array1, fieldArray1, array2, fieldArray2) {
     let ret = [];
@@ -17,7 +17,7 @@ function getObjectsArray2inArray1(array1, fieldArray1, array2, fieldArray2) {
         }
     }
     return ret;
-};
+}
 
 function getBestInArray(array, arrayField, f) {
     let ret = array[0];

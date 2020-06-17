@@ -5,7 +5,7 @@
             "firstname": "lezzo",
             "surname": "maniacale",
             "email": "ciaobello",
-            "hashPassword": "p"
+            "hashPassword": "148de9c5a7a44d19e56cd9ae1a554bf67847afb0c58f6e12fa29ac7ddfca9940"
         },
         {
             "idUser": 321,
@@ -14,63 +14,21 @@
             "email": "cristian.casadei6@studio.unibo.it",
             "hashPassword": "hashPaswd1"
         },
-        {
-            "idUser": 322,
-            "firstname": "naed",
-            "surname": "faedi",
-            "email": "a",
-            "hashPassword": "hashPaswd"
-        }
+        { "idUser": 322, "firstname": "naed", "surname": "faedi", "email": "a", "hashPassword": "hashPaswd" }
     ],
     "Friendship": [
-        {
-            "idFriendship": 1,
-            "idUser1": 123,
-            "idUser2": 321
-        },
-        {
-            "idFriendship": 2,
-            "idUser1": 123,
-            "idUser2": 322
-        }
+        { "idFriendship": 1, "idUser1": 123, "idUser2": 321 },
+        { "idFriendship": 2, "idUser1": 123, "idUser2": 322 }
     ],
     "Message": [
-        {
-            "idFriendship": 1,
-            "date": "2020-05-02T18:25:43Z",
-            "message": "Ciao questo è un messaggio",
-            "idSender": 123,
-            "idReceiver": 321
-        },
-        {
-            "idFriendship": 2,
-            "date": "2020-05-24T14:25:43.323Z",
-            "message": "ciao",
-            "idSender": 123,
-            "idReceiver": 322
-        }
+        { "idFriendship": 1, "date": 0, "idSender": 123, "idReceiver": 321, "message": "Ciao questo è un messaggio" },
+        { "idFriendship": 2, "date": 0, "idSender": 123, "idReceiver": 322, "message": "ciao" }
     ],
     "Level": [
-        {
-            "idUser": 123,
-            "cat": "sport",
-            "PE": 1,
-            "level": 2
-        },
-        {
-            "idUser": 322,
-            "cat": "sport",
-            "PE": 12300,
-            "level": 100
-        }
+        { "idUser": 123, "cat": "sport", "PE": 1, "level": 2 },
+        { "idUser": 322, "cat": "sport", "PE": 12300, "level": 100 }
     ],
-    "History": [
-        {
-            "idUser": 123,
-            "date": "2020-05-01T18:25:43Z",
-            "idExercise": 90
-        }
-    ],
+    "History": [{ "idUser": 123, "date": "2020-05-01T18:25:43Z", "idExercise": 90 }],
     "School": [
         {
             "idSchool": 1,
@@ -81,21 +39,17 @@
         },
         {
             "idSchool": 2,
-            "name": "palestra nuova",
-            "email": "lezzo@bestia.it",
-            "address": "ciao",
-            "idTrainer": 123
+            "name": "palestra acquafoglia",
+            "email": "acquafogliaJym@gmail.com",
+            "address": "via treninfee 3",
+            "idTrainer": 321
         }
     ],
-    "Inscription": [],
-    "Review": [
-        {
-            "idUser": 123,
-            "val": 2,
-            "comment": "la palestra è piccola",
-            "idSchool": 1
-        }
+    "Inscription": [
+        { "idUser": 123, "idSchool": 1 },
+        { "idUser": 123, "idSchool": 2 }
     ],
+    "Review": [{ "idSchool": 1, "idUser": 123, "val": 2, "comment": "la palestra è piccola" }],
     "Course": [
         {
             "idCourse": 420,
@@ -106,20 +60,12 @@
             "minimumLevel": 1
         },
         {
-            "idCourse": 421,
-            "idSchool": 2,
-            "cat": "sport",
-            "name": "Corso bello",
-            "desc": "Corso molto bello",
-            "minimumLevel": 2
-        },
-        {
             "idCourse": 422,
             "idSchool": 2,
-            "cat": "asd",
-            "name": "asd bello",
-            "desc": "Corso asd bello",
-            "minimumLevel": 3
+            "cat": "sport",
+            "name": "Corso per avanzati",
+            "desc": "Corso per le atleti esperti nel settore",
+            "minimumLevel": 1
         }
     ],
     "Exercise": [
@@ -130,16 +76,6 @@
             "PE": 120,
             "duration": 10,
             "name": "streching",
-            "desc": "Esercizio pensato per chi non è sciolto e vuole diventare più agile",
-            "video": "na"
-        },
-        {
-            "idExercise": 91,
-            "idCourse": 420,
-            "level": 2,
-            "PE": 120,
-            "duration": 10,
-            "name": "riscaldamento",
             "desc": "Esercizio pensato per chi non è sciolto e vuole diventare più agile",
             "video": "na"
         }
@@ -157,41 +93,39 @@
         }
     ],
     "ExerciseInProgress": [
-        {
-            "idUser": 123,
-            "idExercise": 91,
-            "progression": 100,
-            "numStep": 10,
-            "lastEdit": "2020-05-24T14:18:25.868Z"
-        }
+        { "idUser": 123, "idExercise": 91, "progression": 100, "numStep": 10, "lastEdit": "2020-05-24T14:18:25Z" }
     ],
     "CourseBought": [
-        {
-            "idUser": 123,
-            "idCourse": 420,
-            "level": 1,
-            "purchaseDate": "2020-05-01T18:25:43Z"
-        },
-        {
-            "idUser": 123,
-            "idCourse": 422,
-            "level": 20,
-            "purchaseDate": "2020-05-24T12:26:08.925Z"
-        }
+        { "idCourse": 420, "idUser": 123, "level": 1, "purchaseDate": "2020-05-01T18:25:43Z" },
+        { "idCourse": 422, "idUser": 123, "level": 20, "purchaseDate": "2020-05-24T12:26:08Z" }
     ],
     "MyCommitment": [
         {
             "idCommitment": 73,
+            "creationDate": "2020-05-02T20:25:43Z",
             "name": "studiare mobile",
             "desc": "Fare il progetto in android",
-            "creationDate": "2020-05-02T20:25:43Z",
             "idUser": 123
         },
         {
-            "idCommitment": 74,
+            "idCommitment": 77,
+            "creationDate": "2020-06-16T13:54:06Z",
+            "name": "Dimagrire",
+            "desc": "Dimagrire 10kg prima dell'estate",
+            "idUser": 123
+        },
+        {
+            "idCommitment": 78,
+            "creationDate": "2020-05-24T14:40:57Z",
             "name": "dimagrire",
             "desc": "dimagrire per l'estate",
-            "creationDate": "2020-05-24T14:40:57.155Z",
+            "idUser": 123
+        },
+        {
+            "idCommitment": 79,
+            "creationDate": "2020-06-17T14:37:06Z",
+            "name": "Studiare",
+            "desc": "Studiare per la sessione di giugno",
             "idUser": 123
         }
     ],
@@ -207,55 +141,74 @@
         },
         {
             "idMyStep": 43,
-            "idCommitment": 74,
+            "idCommitment": 76,
             "name": "mangiare mele",
             "unitMeasure": "mele",
             "max": 5,
             "repetitionDay": 1,
-            "type": "progresion"
+            "type": "progression"
         },
         {
             "idMyStep": 44,
-            "idCommitment": 74,
+            "idCommitment": 76,
             "name": "correre 5 km",
             "unitMeasure": "km",
             "max": 5000,
             "repetitionDay": 7,
-            "type": "progresion"
+            "type": "progression"
+        },
+        {
+            "idMyStep": 45,
+            "idCommitment": 78,
+            "name": "mangiare mele",
+            "unitMeasure": "mele",
+            "max": 5,
+            "repetitionDay": 1,
+            "type": "progression"
+        },
+        {
+            "idMyStep": 46,
+            "idCommitment": 78,
+            "name": "correre 5 km",
+            "unitMeasure": "km",
+            "max": 5000,
+            "repetitionDay": 7,
+            "type": "progression"
+        },
+        {
+            "idMyStep": 47,
+            "idCommitment": 79,
+            "name": "Studiare metodi numerici",
+            "unitMeasure": "ore",
+            "max": 6,
+            "repetitionDay": 1,
+            "type": "progression"
+        },
+        {
+            "idMyStep": 48,
+            "idCommitment": 79,
+            "name": "Studiare mobile",
+            "unitMeasure": "ore",
+            "max": 6,
+            "repetitionDay": 1,
+            "type": "progression"
         }
     ],
     "MyStepDone": [
-        {
-            "idMyStep": 42,
-            "dateStart": "2020-05-03T20:25:43Z",
-            "result": 300
-        },
-        {
-            "idMyStep": 43,
-            "dateStart": "2020-05-24T14:40:57.155Z",
-            "result": 0
-        },
-        {
-            "idMyStep": 44,
-            "dateStart": "2020-05-24T14:40:57.155Z",
-            "result": 0
-        }
+        { "idMyStep": 43, "dateStart": "2020-05-24T14:40:57Z", "result": 0 },
+        { "idMyStep": 44, "dateStart": "2020-05-24T14:40:57Z", "result": 0 },
+        { "idMyStep": 44, "dateStart": "2020-06-16T13:54:06Z", "result": 0 },
+        { "idMyStep": 42, "dateStart": "2020-05-03T20:25:43Z", "result": 300 },
+        { "idMyStep": 42, "dateStart": "2020-06-16T13:54:06Z", "result": 100 },
+        { "idMyStep": 47, "dateStart": "2020-06-17T14:37:06Z", "result": 0 },
+        { "idMyStep": 48, "dateStart": "2020-06-17T14:37:06Z", "result": 0 },
+        { "idMyStep": 42, "dateStart": "2020-06-17T15:33:57Z", "result": 0 }
     ],
     "Session": [
         {
             "idUser": 123,
-            "lastLogin": "2020-05-23T15:23:42.819Z",
-            "idSession": "fd3902e50e409e31c3110d18423df321becbad25"
-        },
-        {
-            "idUser": 123,
-            "lastLogin": "2020-05-23T15:25:39.535Z",
-            "idSession": "ed6bbf6b3b60470a316a706f3098dcad97e365b9"
-        },
-        {
-            "idUser": 123,
-            "lastLogin": "2020-05-23T15:27:19.658Z",
-            "idSession": "93a784622db85fa5ea4ca5ff91731e689858349d"
+            "lastLogin": "2020-06-17T13:27:42.956Z",
+            "idSession": "9e067554f845f002ee8059dcdb56c3de7b80cc02"
         }
     ]
 }

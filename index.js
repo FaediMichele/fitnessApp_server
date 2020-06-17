@@ -11,6 +11,7 @@ const Friend = require("./friend");
 const History = require("./history");
 const Review = require("./review");
 const Commitment = require("./commitment");
+const Logout = require("./logout");
 
 const port = 8080;
 
@@ -24,9 +25,9 @@ var friend = new Friend(store);
 var history = new History(store);
 var review = new Review(store);
 var commitment = new Commitment(store);
+var logout = new Logout(store);
 
-
-var services = [login, user, school, courseBought, exerciseInProgress, friend, history, review, commitment];
+var services = [login, user, school, courseBought, exerciseInProgress, friend, history, review, commitment, logout];
 
 const app = async () => {
     http.createServer(function (req, res) {
@@ -41,7 +42,8 @@ const app = async () => {
             let code = 500;
             let response = "{}";
             if (body.to != undefined && body.to != "") {
-                for (let i = 0; i < services.length; i++) {
+                let i = 0;
+                for (; i < services.length; i++) {
                     if (services[i].service == body.to) {
                         let d = await services[i].managePost(body);
                         code = d.code;
@@ -49,14 +51,19 @@ const app = async () => {
                         break;
                     }
                 }
+                if (i == services.length) {
+                    code = 400;
+                    response = '{"message": "function not found"}';
+                }
             }
-            res.writeHead(code);
-            res.write(JSON.stringify(response));
+            res.writeHead(code, {
+                "Content-Type": "application/json",
+            });
+            res.write(JSON.stringify(response), "UTF-8");
             res.end();
-
         });
     }).listen(port);
     console.log("listening on " + port);
-}
+};
 
 app();
