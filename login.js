@@ -104,6 +104,8 @@ class login {
                 "idMyStep"
             );
             response.SessionId = await this.store.login(user.idUser);
+
+            console.log("Login done(" + body.data.email + ")");
             return { code: 200, response: response };
         }
         return { code: 404, response: '{message: "Login failed. Param was wrong"}' };
