@@ -182,7 +182,7 @@
             "idCommitment": 79,
             "name": "Studiare metodi numerici",
             "unitMeasure": "ore",
-            "max": 6,
+            "max": 10,
             "repetitionDay": 1,
             "type": "progression",
             "category": "MENTAL"
@@ -203,8 +203,12 @@
         { "idMyStep": 43, "dateStart": "2020-06-27T14:37:02Z", "result": 0 },
         { "idMyStep": 44, "dateStart": "2020-06-27T14:37:03Z", "result": 0 },
         { "idMyStep": 45, "dateStart": "2020-06-27T14:37:04Z", "result": 3 },
-        { "idMyStep": 46, "dateStart": "2020-06-27T14:37:05Z", "result": 10 },
-        { "idMyStep": 47, "dateStart": "2020-06-27T14:37:08Z", "result": 0 },
+        { "idMyStep": 46, "dateStart": "2020-06-25T14:37:05Z", "result": 10 },
+        { "idMyStep": 47, "dateStart": "2020-05-21T14:37:05Z", "result": 3 },
+        { "idMyStep": 47, "dateStart": "2020-05-26T14:37:05Z", "result": 10 },
+        { "idMyStep": 47, "dateStart": "2020-06-26T14:37:05Z", "result": 3 },
+        { "idMyStep": 47, "dateStart": "2020-06-27T14:37:05Z", "result": 5 },
+        { "idMyStep": 47, "dateStart": "2020-06-28T14:37:05Z", "result": 10 },
         { "idMyStep": 48, "dateStart": "2020-06-27T14:37:09Z", "result": 0 }
     ],
     "Session": [
