@@ -13,6 +13,7 @@ const Review = require("./review");
 const Commitment = require("./commitment");
 const FileManager = require("./fileManager");
 const Logout = require("./logout");
+const { Console } = require("console");
 
 const port = 8080;
 
@@ -48,6 +49,7 @@ var getservices = [fileManager];
 
 const app = async () => {
     http.createServer(function (req, res) {
+        console.log("received message");
         var body = [];
         let query = url.parse(req.url, true).query;
         if (req.url != "/") {
@@ -66,8 +68,11 @@ const app = async () => {
             }
         });
         req.on("end", async function () {
+            console.log("end");
             if (body.length != 0) {
                 body = JSON.parse(Buffer.concat(body).toString());
+            } else {
+                body = query;
             }
             let code = 500;
             let response = "{}";
@@ -80,6 +85,7 @@ const app = async () => {
                             let d = await postservices[i].managePost(body, query);
                             code = d.code;
                             response = d.response;
+                            console.log("post response", d);
                             break;
                         }
                     }
@@ -102,8 +108,10 @@ const app = async () => {
                     let i = 0;
                     for (; i < getservices.length; i++) {
                         if (getservices[i].service == query.to) {
-                            await getservices[i].manageGet(query, res);
-                            break;
+                            let { code, response } = await getservices[i].manageGet(query, res);
+                            if (response == undefined) {
+                                return;
+                            }
                         }
                     }
                     if (i == getservices.length) {

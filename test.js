@@ -20,11 +20,10 @@ var test = async () => {
     console.log(loginData.SessionId);
 
     body = fs.readFileSync("tmp.mp4");
-    fetch("http://localhost:8080?to=fileManager&idSession=" + loginData.SessionId + "&method=addVideo&idCourse=420", {
-        method: "POST",
-        body: body,
+    fetch("http://localhost:8080?to=fileManager&method=getFile&filename=Exercise-91.mp4", {
+        method: "GET",
     })
-        .then((data) => data.json())
+        .then((data) => data.buffer())
         .then((data) => console.log(data));
     console.log("end");
 };
