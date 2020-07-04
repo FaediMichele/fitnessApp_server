@@ -17,6 +17,7 @@
     "big-json": "^3.1.0",
     "fetch": "^1.1.0",
     "node-fetch": "^2.6.0",
-    "object-hash": "^2.0.3"
+    "object-hash": "^2.0.3",
+    "ukkonen": "^1.4.0"
   }
 }

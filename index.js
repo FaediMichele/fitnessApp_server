@@ -14,6 +14,7 @@ const Commitment = require("./commitment");
 const FileManager = require("./fileManager");
 const Logout = require("./logout");
 const { Console } = require("console");
+const Search = require("./search");
 
 const port = 8080;
 
@@ -29,6 +30,7 @@ var review = new Review(store);
 var commitment = new Commitment(store);
 var fileManager = new FileManager(store);
 var logout = new Logout(store);
+var search = new Search(store);
 
 var postservices = [
     login,
@@ -45,7 +47,7 @@ var postservices = [
 ];
 
 var chunkservices = [fileManager];
-var getservices = [fileManager];
+var getservices = [fileManager, search];
 
 const app = async () => {
     http.createServer(function (req, res) {
@@ -108,10 +110,13 @@ const app = async () => {
                     let i = 0;
                     for (; i < getservices.length; i++) {
                         if (getservices[i].service == query.to) {
-                            let { code, response } = await getservices[i].manageGet(query, res);
+                            let d = await getservices[i].manageGet(query, res);
+                            code = d.code;
+                            response = d.response;
                             if (response == undefined) {
                                 return;
                             }
+                            break;
                         }
                     }
                     if (i == getservices.length) {
@@ -126,6 +131,7 @@ const app = async () => {
                     res.write(JSON.stringify(response), "UTF-8");
                 }
             }
+            console.log("end");
         });
     }).listen(port);
     console.log("listening on " + port);

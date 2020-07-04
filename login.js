@@ -17,10 +17,12 @@ class login {
             body.data.hashPassword != undefined &&
             body.data.hashPassword != ""
         ) {
-            var user = this.store
-                .getTable("User")
-                .filter((u) => u.email == body.data.email && u.hashPassword == body.data.hashPassword)[0];
+            var user = this.store.getTable("User").filter((u) => {
+                console.log(u);
+                return u.email == body.data.email && u.hashPassword == body.data.hashPassword;
+            })[0];
             if (user == undefined) {
+                console.log(body);
                 return {
                     code: 401,
                     response: '{message: "Login failed. Did not find any user with those credential"}',
@@ -39,6 +41,9 @@ class login {
                         u.idUser == user.idUser ||
                         functions.searchObjectInArray(response.Friendship, u.idUser, "idUser2") != undefined
                 );
+            /*response.User.forEach(function (v) {
+                delete v.hashPassword;
+            });*/
 
             // idUser1 must be the id of the user making the request
             for (let i = 0; i < response.Friendship.lenght; i++) {
@@ -103,11 +108,17 @@ class login {
                 this.store.getTable("MyStepDone"),
                 "idMyStep"
             );
+            response.FriendshipRequest = this.store
+                .getTable("FriendshipRequest")
+                .filter((f) => f.idReceiver == user.idUser);
+
             response.SessionId = await this.store.login(user.idUser);
+            response.idUser = user.idUser;
 
             console.log("Login done(" + body.data.email + ")");
             return { code: 200, response: response };
         }
+
         return { code: 404, response: '{message: "Login failed. Param was wrong"}' };
     }
 }
