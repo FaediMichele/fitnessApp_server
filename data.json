@@ -4,8 +4,8 @@
             "idUser": 123,
             "firstname": "michele",
             "surname": "faedi",
-            "email": "ciaobello",
-            "hashPassword": "148de9c5a7a44d19e56cd9ae1a554bf67847afb0c58f6e12fa29ac7ddfca9940",
+            "email": "a@a.com",
+            "hashPassword": "ed02457b5c41d964dbd2f2a609d63fe1bb7528dbe55e1abf5b52c249cd735797",
             "image": "1.jpg"
         },
         {
@@ -25,8 +25,11 @@
             "image": "3.jpg"
         }
     ],
-    "Friendship": [{ "idFriendship": 1, "idUser1": 123, "idUser2": 321 }],
-    "FriendshipRequest": [{ "idSender": 322, "idReceiver": 123 }],
+    "Friendship": [
+        { "idFriendship": 1, "idUser1": 123, "idUser2": 321 },
+        { "idFriendship": 2, "idUser1": 123, "idUser2": 322 }
+    ],
+    "FriendshipRequest": [],
     "Message": [
         {
             "idFriendship": 1,
@@ -228,6 +231,13 @@
             "name": "Studiare",
             "desc": "Studiare per la sessione di giugno",
             "idUser": 123
+        },
+        {
+            "idCommitment": 80,
+            "creationDate": "2020-07-07T10:37:06Z",
+            "name": "Impegno utente 3",
+            "desc": "Studiare per la sessione di giugno",
+            "idUser": 322
         }
     ],
     "MyStep": [
@@ -275,6 +285,16 @@
             "idMyStep": 48,
             "idCommitment": 79,
             "name": "Studiare mobile",
+            "unitMeasure": "ore",
+            "max": 6,
+            "repetitionDay": 1,
+            "type": "progression",
+            "category": "MENTAL"
+        },
+        {
+            "idMyStep": 49,
+            "idCommitment": 80,
+            "name": "Studiare Giapponese",
             "unitMeasure": "ore",
             "max": 6,
             "repetitionDay": 1,

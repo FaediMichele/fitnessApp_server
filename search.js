@@ -106,8 +106,8 @@ class search {
             for (let i = 0; i < total.length; i++) {
                 let isFriend = this.friendship.filter(
                     (f) =>
-                        (f.idUser1 == queryString.idUser1 && f.idUser2 == total[i].val.idUser) ||
-                        (f.idUser2 == queryString.idUser1 && f.idUser1 == total[i].val.idUser)
+                        (f.idUser1 == queryString.idUser && f.idUser2 == total[i].val.idUser) ||
+                        (f.idUser2 == queryString.idUser && f.idUser1 == total[i].val.idUser)
                 );
                 if (isFriend == undefined || isFriend.length == 0) {
                     total[i].distance += this.accuracity * 2;
@@ -132,7 +132,7 @@ class search {
                 .sort((a, b) => b.distance - a.distance)
                 .slice(offset, offset + num)
                 .map((e) => e.val);
-            console.log("result" + total);
+            console.log("result", total);
             return { code: 200, response: total };
         } else {
             console.log("error on request");
