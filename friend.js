@@ -154,6 +154,19 @@ class friend {
             );
             this.store.saveData("Friendship", this.friendship);
             return { code: 200, response: '{message: "ok"}' };
+        } else if (body.method == "getFriendshipRequest") {
+            let userRequest = this.friendshipRequest.filter((f) => f.idReceiver == idUser);
+
+            let friend = this.user.filter((u) => userRequest.filter((req) => req.idSender == u.idUser).length > 0);
+            friend = JSON.parse(JSON.stringify(friend));
+            let friendId = friend.map((v) => v.idUser);
+            let friendLevels = this.userLevel.filter((u) => friendId.includes(u.idUser));
+            friend.forEach((e) => {
+                e.Levels = friendLevels.filter((l) => l.idUser == e.idUser);
+                e.requestReceived = true;
+            });
+            let response = friend;
+            return { code: 200, response: response };
         }
         return { code: 400, response: '{message: "method not found"}' };
     }

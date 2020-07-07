@@ -131,6 +131,7 @@ const app = async () => {
                     res.end();
                 }
             }
+            console.log(response);
         });
     }).listen(port);
     console.log("listening on " + port);
