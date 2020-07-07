@@ -18,11 +18,9 @@ class login {
             body.data.hashPassword != ""
         ) {
             var user = this.store.getTable("User").filter((u) => {
-                console.log(u);
                 return u.email == body.data.email && u.hashPassword == body.data.hashPassword;
             })[0];
             if (user == undefined) {
-                console.log(body);
                 return {
                     code: 401,
                     response: '{message: "Login failed. Did not find any user with those credential"}',
@@ -60,9 +58,7 @@ class login {
                     (m) =>
                         functions.searchObjectInArray(response.Friendship, m.idFriendship, "idFriendship") != undefined
                 );
-            response.Level = this.store
-                .getTable("Level")
-                .filter((l) => functions.searchObjectInArray(response.User, l.idUser, "idUser"));
+
             response.History = this.store.getTable("History").filter((h) => h.idUser == user.idUser);
 
             let schoolInscripted = this.store.getTable("Inscription").filter((s) => s.idUser == user.idUser);
@@ -73,9 +69,21 @@ class login {
                 this.store.getTable("School"),
                 "idSchool"
             );
-            response.User.concat(
-                functions.getObjectsArray2inArray1(response.School, "idTrainer", this.store.getTable("User"), "idUSer")
+            let idUserAnalyzed = [];
+            response.User = response.User.concat(
+                functions.getObjectsArray2inArray1(response.School, "idTrainer", this.store.getTable("User"), "idUser")
             );
+            response.User = response.User.filter((u) => {
+                if (idUserAnalyzed.includes(u.idUser)) {
+                    return false;
+                }
+                idUserAnalyzed.push(u.idUser);
+                return true;
+            });
+            response.Level = this.store
+                .getTable("Level")
+                .filter((l) => functions.searchObjectInArray(response.User, l.idUser, "idUser"));
+            console.log("*", response.User, "*");
             response.Review = this.store.getTable("Review").filter((r) => r.idUser == user.idUser);
             response.CourseBought = this.store.getTable("CourseBought").filter((c) => c.idUser == user.idUser);
             response.Course = functions.getObjectsArray2inArray1(

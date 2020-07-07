@@ -70,7 +70,6 @@ const app = async () => {
             }
         });
         req.on("end", async function () {
-            console.log("end");
             if (body.length != 0) {
                 body = JSON.parse(Buffer.concat(body).toString());
             } else {
@@ -87,7 +86,6 @@ const app = async () => {
                             let d = await postservices[i].managePost(body, query);
                             code = d.code;
                             response = d.response;
-                            console.log("post response", d);
                             break;
                         }
                     }
@@ -110,6 +108,7 @@ const app = async () => {
                     let i = 0;
                     for (; i < getservices.length; i++) {
                         if (getservices[i].service == query.to) {
+                            console.log("HERE");
                             let d = await getservices[i].manageGet(query, res);
                             code = d.code;
                             response = d.response;
@@ -129,9 +128,9 @@ const app = async () => {
                         "Content-Type": "application/json",
                     });
                     res.write(JSON.stringify(response), "UTF-8");
+                    res.end();
                 }
             }
-            console.log("end");
         });
     }).listen(port);
     console.log("listening on " + port);

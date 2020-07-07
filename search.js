@@ -11,12 +11,14 @@ class search {
         this.commitment = store.getTable("MyCommitment");
         this.step = store.getTable("MyStep");
         this.friendship = store.getTable("Friendship");
+        this.friendRequest = store.getTable("FriendshipRequest");
         this.accuracity = 2;
 
         this.user;
     }
 
     async manageGet(queryString, res) {
+        console.log("HERE ");
         if (
             queryString.text != undefined &&
             queryString.text != "" &&
@@ -27,7 +29,6 @@ class search {
             let commitmentCopy = JSON.parse(JSON.stringify(this.commitment));
             let stepCopy = JSON.parse(JSON.stringify(this.step));
             let userResponse = userCopy.map((u) => {
-                console.log(this.myDistance(u.firstname, queryString.text));
                 return { val: u, distance: this.myDistance(u.firstname, queryString.text) };
             });
             userResponse = userResponse
@@ -38,9 +39,7 @@ class search {
                     })
                 )
                 .filter((v) => v.distance <= this.accuracity);
-            userResponse.forEach((e) => {
-                delete e.val.hashPassword;
-            });
+
             let commitmentResponse = commitmentCopy
                 .map((u) => {
                     let user = userCopy[this.store.searchKey("User", "idUser", u.idUser)];
@@ -99,6 +98,9 @@ class search {
                 .concat(commitmentResponse)
                 .concat(stepResponse)
                 .filter((v) => v.val.idUser != queryString.idUser);
+            total.forEach((e) => {
+                delete e.hashPassword;
+            });
 
             // for the non friend result increase the distance in order to have them at the bottom
             for (let i = 0; i < total.length; i++) {
@@ -107,15 +109,34 @@ class search {
                         (f.idUser1 == queryString.idUser1 && f.idUser2 == total[i].val.idUser) ||
                         (f.idUser2 == queryString.idUser1 && f.idUser1 == total[i].val.idUser)
                 );
-                if (isFriend == undefined) {
+                if (isFriend == undefined || isFriend.length == 0) {
                     total[i].distance += this.accuracity * 2;
+                    let requestSended = this.friendRequest.filter(
+                        (f) => f.idSender == queryString.idUser && f.idReceiver == total[i].val.idUser
+                    );
+                    let requestReceived = this.friendRequest.filter(
+                        (f) => f.idSender == total[i].val.idUser && f.idReceiver == queryString.idUser
+                    );
+                    if (requestSended != undefined && requestSended.length > 0) {
+                        total[i].val.requestSended = true;
+                    }
+                    if (requestReceived != undefined && requestReceived.length > 0) {
+                        total[i].val.requestReceived = true;
+                    }
+                    console.log("Request received: ", requestReceived);
+                } else {
+                    total[i].val.isFriend = true;
                 }
             }
             total = total
                 .sort((a, b) => b.distance - a.distance)
                 .slice(offset, offset + num)
                 .map((e) => e.val);
+            console.log("result" + total);
             return { code: 200, response: total };
+        } else {
+            console.log("error on request");
+            return { code: 200, response: '{message: "error on request"}' };
         }
     }
 
