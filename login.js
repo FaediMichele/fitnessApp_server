@@ -39,9 +39,10 @@ class login {
                         u.idUser == user.idUser ||
                         functions.searchObjectInArray(response.Friendship, u.idUser, "idUser2") != undefined
                 );
-            /*response.User.forEach(function (v) {
-                delete v.hashPassword;
-            });*/
+            response.User = JSON.parse(JSON.stringify(response.User));
+            response.User.forEach(function (v) {
+                v.hashPassword = "not avaliable";
+            });
 
             // idUser1 must be the id of the user making the request
             for (let i = 0; i < response.Friendship.lenght; i++) {
@@ -52,57 +53,62 @@ class login {
                 }
             }
 
-            response.Message = this.store
-                .getTable("Message")
-                .filter(
-                    (m) =>
-                        functions.searchObjectInArray(response.Friendship, m.idFriendship, "idFriendship") != undefined
-                );
+            let courseBought = this.store.getTable("CourseBought").filter((c) => c.idUser == user.idUser);
+            response.Course = functions.getObjectsArray2inArray1(
+                courseBought,
+                "idCourse",
+                this.store.getTable("Course"),
+                "idCourse"
+            );
 
-            response.History = this.store.getTable("History").filter((h) => h.idUser == user.idUser);
-
-            let schoolInscripted = this.store.getTable("Inscription").filter((s) => s.idUser == user.idUser);
+            console.log(response.Course[1]);
 
             response.School = functions.getObjectsArray2inArray1(
-                schoolInscripted,
+                response.Course,
                 "idSchool",
                 this.store.getTable("School"),
                 "idSchool"
             );
-            let idUserAnalyzed = [];
+
             response.User = response.User.concat(
                 functions.getObjectsArray2inArray1(response.School, "idTrainer", this.store.getTable("User"), "idUser")
             );
+
+            // make user unique
+            let idAnalyzed = [];
             response.User = response.User.filter((u) => {
-                if (idUserAnalyzed.includes(u.idUser)) {
+                if (idAnalyzed.includes(u.idUser)) {
                     return false;
                 }
-                idUserAnalyzed.push(u.idUser);
+                idAnalyzed.push(u.idUser);
                 return true;
             });
+
+            // make school unique
+            idAnalyzed = [];
+            response.School = response.School.filter((f) => {
+                if (idAnalyzed.includes(f.idSchool)) {
+                    return false;
+                }
+                idAnalyzed.push(f.idSchool);
+            });
+
             response.Level = this.store
                 .getTable("Level")
                 .filter((l) => functions.searchObjectInArray(response.User, l.idUser, "idUser"));
             console.log("*", response.User, "*");
-            response.Review = this.store.getTable("Review").filter((r) => r.idUser == user.idUser);
-            response.CourseBought = this.store.getTable("CourseBought").filter((c) => c.idUser == user.idUser);
-            response.Course = functions.getObjectsArray2inArray1(
-                response.School,
-                "idSchool",
-                this.store.getTable("Course"),
-                "idSchool"
+
+            response.Review = functions.getObjectsArray2inArray1(
+                response.Course,
+                "idCourse",
+                this.store.getTable("Review"),
+                "idCourse"
             );
+
             response.Exercise = this.store
                 .getTable("Exercise")
-                .filter(
-                    (e) => functions.searchObjectInArray(response.CourseBought, e.idCourse, "idCourse") != undefined
-                );
-            response.Step = this.store
-                .getTable("Step")
-                .filter((s) => functions.searchObjectInArray(response.Exercise, s.idExercise, "idExercise"));
-            response.ExerciseInProgress = this.store
-                .getTable("ExerciseInProgress")
-                .filter((ex) => ex.idUser == user.idUser);
+                .filter((e) => functions.searchObjectInArray(courseBought, e.idCourse, "idCourse") != undefined);
+
             response.MyCommitment = this.store.getTable("MyCommitment").filter((c) => c.idUser == user.idUser);
             response.MyStep = functions.getObjectsArray2inArray1(
                 response.MyCommitment,

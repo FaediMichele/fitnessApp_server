@@ -26,10 +26,10 @@
         }
     ],
     "Friendship": [
-        { "idFriendship": 1, "idUser1": 123, "idUser2": 321 },
-        { "idFriendship": 2, "idUser1": 123, "idUser2": 322 }
+        { "idFriendship": 2, "idUser1": 123, "idUser2": 322 },
+        { "idFriendship": 1, "idUser1": 123, "idUser2": 321 }
     ],
-    "FriendshipRequest": [],
+    "FriendshipRequest": [{ "idSender": 322, "idReceiver": 123 }],
     "Message": [
         {
             "idFriendship": 1,
@@ -106,6 +106,13 @@
             "message": " asdasdasd",
             "idSender": 123,
             "idReceiver": 321
+        },
+        {
+            "idFriendship": 1,
+            "date": "2020-07-09T10:37:08.539Z",
+            "message": "dgfsd",
+            "idSender": 123,
+            "idReceiver": 321
         }
     ],
     "Level": [
@@ -119,96 +126,66 @@
         { "idUser": 322, "cat": "MENTAL", "PE": 12300, "level": 100 },
         { "idUser": 322, "cat": "SOCIAL", "PE": 12300, "level": 100 }
     ],
-    "History": [{ "idUser": 123, "date": "2020-05-01T18:25:43Z", "idExercise": 90 }],
     "School": [
         {
             "idSchool": 1,
             "name": "palestra giubilopoli",
-            "email": "giubilopolyJym@gmail.com",
-            "address": "via duefoglie 3",
             "idTrainer": 321,
-            "image": "4.jpg",
-            "video": "School-1.mp4"
+            "desc": "descrizione",
+            "image": "4.jpg"
         },
         {
             "idSchool": 2,
             "name": "palestra acquafoglia",
-            "email": "acquafogliaJym@gmail.com",
-            "address": "via treninfee 3",
+            "desc": "descrizione",
             "idTrainer": 321,
-            "image": "5.jpg",
-            "video": "School-2.mp4"
+            "image": "5.jpg"
         }
     ],
-    "Inscription": [
-        { "idUser": 123, "idSchool": 1 },
-        { "idUser": 123, "idSchool": 2 }
-    ],
-    "Review": [{ "idSchool": 1, "idUser": 123, "val": 2, "comment": "la palestra è piccola" }],
+    "Review": [{ "idCourse": 1, "idUser": 123, "val": 2, "comment": "il corso è molto bello" }],
     "Course": [
         {
             "idCourse": 420,
             "idSchool": 1,
-            "cat": "sport",
             "name": "Corso per principianti",
             "desc": "Corso per le persone che intendono iniziare ad allenarsi pur non avendo esperienza",
-            "minimumLevel": 1,
             "video": "Course-420.mp4",
-            "image": "6.jpg"
+            "cat": "SPORT",
+            "image": ["6.jpg"]
         },
         {
             "idCourse": 422,
             "idSchool": 2,
-            "cat": "sport",
             "name": "Corso per avanzati",
             "desc": "Corso per le atleti esperti nel settore",
-            "minimumLevel": 1,
             "video": "Course-422.mp4",
-            "image": "13.jpg"
+            "cat": "SPORT",
+            "image": ["13.jpg", "11.jpg", "12.jpg", "10.jpg"]
         }
     ],
     "Exercise": [
         {
             "idExercise": 90,
             "idCourse": 420,
-            "level": 1,
-            "PE": 120,
-            "duration": 10,
             "name": "streching",
             "desc": "Esercizio pensato per chi non è sciolto e vuole diventare più agile",
             "video": "Exercise-90.mp4",
-            "image": "7.jpg"
+            "image": "7.jpg",
+            "importData": "{\"MyCommitment\": {\"idCommitment\": 80,.../*TODO */"
         },
         {
             "idExercise": 91,
             "idCourse": 422,
-            "level": 1,
-            "PE": 120,
-            "duration": 10,
             "name": "streching",
             "desc": "Esercizio pensato per chi non è sciolto e vuole diventare più agile",
             "video": "Exercise-91.mp4",
-            "image": "8.jpg"
+            "image": "8.jpg",
+            "importData": "{\"MyCommitment\": {\"idCommitment\": 80,.../*TODO */"
         }
-    ],
-    "Step": [
-        {
-            "idExercise": 90,
-            "num": 1,
-            "name": "riscaldamento",
-            "desc": "corsa di 1 km",
-            "incVal": 100,
-            "unitMeasure": "metri",
-            "max": 1000,
-            "video": ""
-        }
-    ],
-    "ExerciseInProgress": [
-        { "idUser": 123, "idExercise": 91, "progression": 100, "numStep": 10, "lastEdit": "2020-05-24T14:18:25Z" }
     ],
     "CourseBought": [
-        { "idCourse": 420, "idUser": 123, "level": 1, "purchaseDate": "2020-05-01T18:25:43Z" },
-        { "idCourse": 422, "idUser": 123, "level": 20, "purchaseDate": "2020-05-24T12:26:08Z" }
+        { "idCourse": 420, "idUser": 123 },
+        { "idCourse": 422, "idUser": 123 }
     ],
     "MyCommitment": [
         {
