@@ -142,7 +142,7 @@
             "image": "5.jpg"
         }
     ],
-    "Review": [{ "idCourse": 1, "idUser": 123, "val": 2, "comment": "il corso è molto bello" }],
+    "Review": [{ "idCourse": 422, "idUser": 123, "val": 9, "comment": "il corso è molto bello" }],
     "Course": [
         {
             "idCourse": 420,
@@ -151,7 +151,8 @@
             "desc": "Corso per le persone che intendono iniziare ad allenarsi pur non avendo esperienza",
             "video": "Course-420.mp4",
             "cat": "SPORT",
-            "image": ["6.jpg"]
+            "image": ["6.jpg"],
+            "price": 100
         },
         {
             "idCourse": 422,
@@ -160,7 +161,8 @@
             "desc": "Corso per le atleti esperti nel settore",
             "video": "Course-422.mp4",
             "cat": "SPORT",
-            "image": ["13.jpg", "11.jpg", "12.jpg", "10.jpg"]
+            "image": ["13.jpg", "11.jpg", "12.jpg", "10.jpg"],
+            "price": 1000
         }
     ],
     "Exercise": [

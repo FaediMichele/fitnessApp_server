@@ -61,8 +61,6 @@ class login {
                 "idCourse"
             );
 
-            console.log(response.Course[1]);
-
             response.School = functions.getObjectsArray2inArray1(
                 response.Course,
                 "idSchool",
@@ -91,7 +89,11 @@ class login {
                     return false;
                 }
                 idAnalyzed.push(f.idSchool);
+                return true;
             });
+            Array.prototype.average = function () {
+                return this.length == 0 ? 0 : this.reduce((a, b) => a + b) / this.length;
+            };
 
             response.Level = this.store
                 .getTable("Level")
@@ -104,6 +106,12 @@ class login {
                 this.store.getTable("Review"),
                 "idCourse"
             );
+
+            response.Course.forEach((c) => {
+                c.review = response.Review.filter((r) => r.idCourse == c.idCourse)
+                    .map((r) => r.val)
+                    .average();
+            });
 
             response.Exercise = this.store
                 .getTable("Exercise")
