@@ -57,35 +57,6 @@
         { "idFriendship": 1, "date": "2020-07-06T23:13:59.928Z", "message": "ccc", "idSender": 123, "idReceiver": 321 },
         {
             "idFriendship": 1,
-            "date": "2020-07-06T23:14:04.224Z",
-            "message": "asdasd",
-            "idSender": 123,
-            "idReceiver": 321
-        },
-        {
-            "idFriendship": 1,
-            "date": "2020-07-06T23:14:06.238Z",
-            "message": "asdasd",
-            "idSender": 123,
-            "idReceiver": 321
-        },
-        {
-            "idFriendship": 1,
-            "date": "2020-07-06T23:14:06.636Z",
-            "message": "asda",
-            "idSender": 123,
-            "idReceiver": 321
-        },
-        { "idFriendship": 1, "date": "2020-07-06T23:14:06.945Z", "message": "das", "idSender": 123, "idReceiver": 321 },
-        { "idFriendship": 1, "date": "2020-07-06T23:14:07.203Z", "message": "da", "idSender": 123, "idReceiver": 321 },
-        { "idFriendship": 1, "date": "2020-07-06T23:14:07.495Z", "message": "da", "idSender": 123, "idReceiver": 321 },
-        { "idFriendship": 1, "date": "2020-07-06T23:14:07.743Z", "message": "da", "idSender": 123, "idReceiver": 321 },
-        { "idFriendship": 1, "date": "2020-07-06T23:14:08.019Z", "message": "da", "idSender": 123, "idReceiver": 321 },
-        { "idFriendship": 1, "date": "2020-07-06T23:14:08.263Z", "message": "sd", "idSender": 123, "idReceiver": 321 },
-        { "idFriendship": 1, "date": "2020-07-06T23:14:08.506Z", "message": "sda", "idSender": 123, "idReceiver": 321 },
-        { "idFriendship": 1, "date": "2020-07-06T23:14:08.766Z", "message": "da", "idSender": 123, "idReceiver": 321 },
-        {
-            "idFriendship": 1,
             "date": "2020-07-06T23:14:09.014Z",
             "message": "ssda",
             "idSender": 123,
@@ -99,28 +70,6 @@
             "message": "Sono il fantasma del natale passato",
             "idSender": 321,
             "idReceiver": 123
-        },
-        {
-            "idFriendship": 1,
-            "date": "2020-07-06T23:29:40.813Z",
-            "message": "questions please aodsnaodnoansfvnjovnodfnvon on oanf sfn sjf so asil. oisab voisy osi vos sfbv so oiv so osahfoi bvshbv so b bbv b hbv dfiv bdufvb dubv dub djvhbdjvb djvbdjvhb djvbdjvhb JD jdbv jdbv jdbhfhfhfhfhffhfhjfhbvjdfvhbdfjvbdfjvbdfjvbdjvbdjvbdjfvbjdfvbdjfhvb just vbjdfv bdjfbv",
-            "idSender": 123,
-            "idReceiver": 321
-        },
-        { "idFriendship": 1, "date": "2020-07-06T23:30:14.640Z", "message": "xvv", "idSender": 123, "idReceiver": 321 },
-        {
-            "idFriendship": 1,
-            "date": "2020-07-07T23:47:17.170Z",
-            "message": " asdasdasd",
-            "idSender": 123,
-            "idReceiver": 321
-        },
-        {
-            "idFriendship": 1,
-            "date": "2020-07-09T10:37:08.539Z",
-            "message": "dgfsd",
-            "idSender": 123,
-            "idReceiver": 321
         }
     ],
     "Level": [
