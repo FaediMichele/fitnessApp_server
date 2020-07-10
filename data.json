@@ -23,6 +23,14 @@
             "email": "a",
             "hashPassword": "hashPaswd",
             "image": "3.jpg"
+        },
+        {
+            "idUser": 323,
+            "firstname": "Piermenti",
+            "surname": "Strati",
+            "email": "piermenti.strati@gmail.com",
+            "hashPassword": "ed02457b5c41d964dbd2f2a609d63fe1bb7528dbe55e1abf5b52c249cd735797",
+            "image": "4.jpg"
         }
     ],
     "Friendship": [
@@ -127,22 +135,40 @@
         { "idUser": 322, "cat": "SOCIAL", "PE": 12300, "level": 100 }
     ],
     "School": [
+        { "idSchool": 1, "name": "palestra giubilopoli", "idTrainer": 321, "desc": "descrizione", "image": "4.jpg" },
+        { "idSchool": 2, "name": "palestra acquafoglia", "desc": "descrizione", "idTrainer": 321, "image": "5.jpg" },
         {
-            "idSchool": 1,
-            "name": "palestra giubilopoli",
-            "idTrainer": 321,
-            "desc": "descrizione",
-            "image": "4.jpg"
-        },
-        {
-            "idSchool": 2,
-            "name": "palestra acquafoglia",
-            "desc": "descrizione",
-            "idTrainer": 321,
-            "image": "5.jpg"
+            "idSchool": 3,
+            "name": "palestra impossibile",
+            "desc": "questa palestra è la più difficile del pianeta",
+            "idTrainer": 323,
+            "image": "6.jpg"
         }
     ],
-    "Review": [{ "idCourse": 422, "idUser": 123, "val": 9, "comment": "il corso è molto bello" }],
+    "Review": [
+        {
+            "idCourse": 422,
+            "idUser": 123,
+            "val": 9,
+            "comment": "il corso è molto bello",
+            "date": "2020-05-02T20:25:43Z"
+        },
+        {
+            "idCourse": 423,
+            "idUser": 322,
+            "val": 1,
+            "comment": "il corso è troppo difficile",
+            "date": "2020-05-02T20:25:43Z"
+        },
+        {
+            "idCourse": 423,
+            "idUser": 323,
+            "val": 10,
+            "comment": "il corso è estremamente difficile ma molto gratificante",
+            "date": "2020-05-02T20:25:43Z"
+        },
+        { "idCourse": 423, "idUser": 123, "val": 3, "comment": "AS", "date": "2020-07-10T17:37:44.373Z" }
+    ],
     "Course": [
         {
             "idCourse": 420,
@@ -152,7 +178,10 @@
             "video": "Course-420.mp4",
             "cat": "SPORT",
             "image": ["6.jpg"],
-            "price": 100
+            "price": 100,
+            "isBought": true,
+            "review": 0,
+            "isArchived": false
         },
         {
             "idCourse": 422,
@@ -162,7 +191,20 @@
             "video": "Course-422.mp4",
             "cat": "SPORT",
             "image": ["13.jpg", "11.jpg", "12.jpg", "10.jpg"],
-            "price": 1000
+            "price": 1000,
+            "review": 9,
+            "isArchived": false
+        },
+        {
+            "idCourse": 423,
+            "idSchool": 3,
+            "name": "Corso per ironman",
+            "desc": "Corso per le persone che vogliono diventare ironman",
+            "video": "Course-422.mp4",
+            "cat": "SPORT",
+            "image": ["13.jpg", "11.jpg", "12.jpg", "10.jpg"],
+            "price": 10000,
+            "review": 4.666666666666667
         }
     ],
     "Exercise": [
@@ -179,15 +221,16 @@
             "idExercise": 91,
             "idCourse": 422,
             "name": "streching",
-            "desc": "Esercizio pensato per chi non è sciolto e vuole diventare più agile",
+            "desc": "Esercizio pensato per chi è sciolto e vuole diventare più forte",
             "video": "Exercise-91.mp4",
             "image": "8.jpg",
             "importData": "{\"MyCommitment\": {\"idCommitment\": 80,.../*TODO */"
         }
     ],
     "CourseBought": [
-        { "idCourse": 420, "idUser": 123 },
-        { "idCourse": 422, "idUser": 123 }
+        { "idCourse": 420, "idUser": 123, "isArchived": false },
+        { "idCourse": 422, "idUser": 123, "isArchived": false },
+        { "idUser": 123, "idCourse": 423, "isArchived": false }
     ],
     "MyCommitment": [
         {
@@ -310,8 +353,8 @@
     "Session": [
         {
             "idUser": 123,
-            "lastLogin": "2020-07-08T14:09:02.183Z",
-            "idSession": "baa142216703e13806d9960c9099bf1a2666d0c8"
+            "lastLogin": "2020-07-10T15:22:27.559Z",
+            "idSession": "a91da9802abe80b57c40322acbf0816d8a40637b"
         }
     ]
 }

@@ -57,7 +57,7 @@ class login {
             response.Course = functions.getObjectsArray2inArray1(
                 courseBought,
                 "idCourse",
-                this.store.getTable("Course"),
+                JSON.parse(JSON.stringify(this.store.getTable("Course"))),
                 "idCourse"
             );
 
@@ -68,12 +68,46 @@ class login {
                 "idSchool"
             );
 
+            // make school unique
+            let idAnalyzed = [];
+            response.School = response.School.filter((f) => {
+                if (idAnalyzed.includes(f.idSchool)) {
+                    return false;
+                }
+                idAnalyzed.push(f.idSchool);
+                return true;
+            });
+
             response.User = response.User.concat(
                 functions.getObjectsArray2inArray1(response.School, "idTrainer", this.store.getTable("User"), "idUser")
             );
 
+            response.Review = functions.getObjectsArray2inArray1(
+                response.Course,
+                "idCourse",
+                this.store.getTable("Review"),
+                "idCourse"
+            );
+
+            idAnalyzed = {};
+            // only 10 review for course
+            response.Review.filter((r) => {
+                if (idAnalyzed[r.idCourse] == undefined) {
+                    idAnalyzed[r.idCourse] = 1;
+                    return true;
+                } else if (idAnalyzed[r.idCourse] < 10) {
+                    idAnalyzed[r.idCourse] = idAnalyzed[r.idCourse] + 1;
+                    return true;
+                }
+                return false;
+            });
+
+            response.User = response.User.concat(
+                functions.getObjectsArray2inArray1(response.Review, "idUser", this.store.getTable("User"), "idUser")
+            );
+
             // make user unique
-            let idAnalyzed = [];
+            idAnalyzed = [];
             response.User = response.User.filter((u) => {
                 if (idAnalyzed.includes(u.idUser)) {
                     return false;
@@ -82,15 +116,6 @@ class login {
                 return true;
             });
 
-            // make school unique
-            idAnalyzed = [];
-            response.School = response.School.filter((f) => {
-                if (idAnalyzed.includes(f.idSchool)) {
-                    return false;
-                }
-                idAnalyzed.push(f.idSchool);
-                return true;
-            });
             Array.prototype.average = function () {
                 return this.length == 0 ? 0 : this.reduce((a, b) => a + b) / this.length;
             };
@@ -100,17 +125,14 @@ class login {
                 .filter((l) => functions.searchObjectInArray(response.User, l.idUser, "idUser"));
             console.log("*", response.User, "*");
 
-            response.Review = functions.getObjectsArray2inArray1(
-                response.Course,
-                "idCourse",
-                this.store.getTable("Review"),
-                "idCourse"
-            );
-
             response.Course.forEach((c) => {
+                c.isBought = true;
                 c.review = response.Review.filter((r) => r.idCourse == c.idCourse)
                     .map((r) => r.val)
                     .average();
+                c.isArchived = courseBought.filter(
+                    (cb) => cb.idCourse == c.idCourse && cb.idUser == user.idUser
+                )[0].isArchived;
             });
 
             response.Exercise = this.store

@@ -6,61 +6,51 @@ class CourseBought {
     constructor(store) {
         this.store = store;
         this.service = service;
-        this.Courses = this.store.getTable("CourseBought")
+        this.courseBought = this.store.getTable("CourseBought");
+        this.courses = this.store.getTable("Course");
+        this.exercise = this.store.getTable("Exercise");
+        this.review = this.store.getTable("Review");
     }
 
-    async manageGet(queryString) { }
+    async manageGet(queryString) {}
 
     async managePost(body) {
         let idUser = this.store.getIdUser(body.idSession);
-        if (body.method == "insertCourseBought") {
-            let ok = true;
-            let result = [];
-            let addCourseBought = (c) => {
-                if (c.idCourse != undefined &&
-                    this.store.searchKey("Course", "idCourse", c.idCourse) != undefined) {
-                    result.push({ idUser: idUser, idCourse: c.idCourse, level: 1, purchaseDate: new Date() });
-                } else {
-                    ok = false;
+        if (idUser != undefined) {
+            if (body.method == "buyCourse" && body.data.idCourse != undefined && body.data.idCourse != "") {
+                if (
+                    this.courseBought.filter((c) => c.idUser == idUser && c.idCourse == body.data.idCourse).length > 0
+                ) {
+                    return { code: 201, response: '{"message": "Course already bought"}' };
                 }
-            }
-            if (Array.isArray(body.data)) {
-                body.data.forEach(addCourseBought);
-            } else {
-                addCourseBought(body.data);
-            }
-            if (!ok) {
-                return { code: 400, response: '{message: "bad request. param was wrong"}' };
-            } else {
-                this.Courses = this.Courses.concat(result);
-                this.store.saveData("CourseBought", this.Courses);
-                return { code: 200, response: '{message: "ok"}' };
-            }
-        } else if (body.method == "updateCourseBought") {
-            let ok = true;;
-            let updateCourseBought = (c) => {
-                let i = functions.getNumItemInArray(this.Courses, ["idUser", "idCourse"], [idUser, c.idCourse]);
-                if (c.idCourse != undefined &&
-                    i != undefined &&
-                    c.level != undefined) {
-                    this.Courses[i].level = parseInt(c.level);
-                } else {
-                    ok = false;
-                }
-            }
-            if (Array.isArray(body.data)) {
-                body.data.forEach(updateCourseBought);
-            } else {
-                updateCourseBought(body.data);
-            }
-            if (!ok) {
-                return { code: 400, response: '{message: "bad request. param was wrong"}' };
-            } else {
-                this.store.saveData("CourseBought", this.Courses);
-                return { code: 200, response: '{message: "ok"}' };
+                this.courseBought.push({ idUser: idUser, idCourse: body.data.idCourse, isArchived: false });
+                this.store.saveData("CourseBought", this.courseBought);
+
+                let course = this.courses.filter((c) => c.idCourse == body.data.idCourse)[0];
+                course = JSON.parse(JSON.stringify(course));
+                course.isBought = true;
+                course.isArchived = false;
+                let exercise = this.exercise.filter((e) => e.idCourse == course.idCourse);
+                let school = this.store.getTable("School").filter((s) => s.idSchool == course.idSchool)[0];
+                let trainer = this.store.getTable("User").filter((u) => u.idUser == school.idTrainer)[0];
+                let trainerLevel = this.store.getTable("Level").filter((ul) => ul.idUser == trainer.idUser);
+                let review = this.store.getTable("Review").filter((r) => r.idCourse == course.idCourse);
+
+                return {
+                    code: 200,
+                    response: {
+                        Course: [course],
+                        Exercise: exercise,
+                        School: [school],
+                        User: [trainer],
+                        Level: trainerLevel,
+                        Review: review,
+                    },
+                };
             }
         }
+        return { code: 400, response: '{"message": "idSession is not correct"}' };
     }
 }
 
-module.exports = CourseBought
+module.exports = CourseBought;

@@ -91,7 +91,7 @@ const app = async () => {
                     }
                     if (i == postservices.length) {
                         code = 400;
-                        response = '{"message": "function not found"}';
+                        response = '{"message": "function not foundi"}';
                     }
                 }
                 res.writeHead(code, {
@@ -103,7 +103,7 @@ const app = async () => {
             if (req.method == "GET") {
                 if (query.to == undefined || query.to == "") {
                     code = 400;
-                    response = '{"message": "function not found"}';
+                    response = '{"message": "function not founded"}';
                 } else {
                     let i = 0;
                     for (; i < getservices.length; i++) {
@@ -115,6 +115,7 @@ const app = async () => {
                             if (response == undefined) {
                                 return;
                             }
+                            i--;
                             break;
                         }
                     }
