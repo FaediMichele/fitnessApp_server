@@ -116,7 +116,8 @@
             "comment": "il corso è estremamente difficile ma molto gratificante",
             "date": "2020-05-02T20:25:43Z"
         },
-        { "idCourse": 423, "idUser": 123, "val": 3, "comment": "AS", "date": "2020-07-10T17:37:44.373Z" }
+        { "idCourse": 423, "idUser": 123, "val": 3, "comment": "AS", "date": "2020-07-10T17:37:44.373Z" },
+        { "idCourse": 420, "idUser": 123, "val": 9, "comment": "è facile", "date": "2020-07-11T14:00:24.299Z" }
     ],
     "Course": [
         {
@@ -129,7 +130,7 @@
             "image": ["6.jpg"],
             "price": 100,
             "isBought": true,
-            "review": 0,
+            "review": 9,
             "isArchived": false
         },
         {
@@ -164,7 +165,48 @@
             "desc": "Esercizio pensato per chi non è sciolto e vuole diventare più agile",
             "video": "Exercise-90.mp4",
             "image": "7.jpg",
-            "importData": "{\"MyCommitment\": {\"idCommitment\": 80,.../*TODO */"
+            "importData": {
+                "MyCommitment": {
+                    "idCommitment": 0,
+                    "creationDate": "0",
+                    "name": "Strechinng iniziale",
+                    "desc": "Per fare streaching è importante mantenere la schiena dritta e il mento allo sterno durante tutti i movimenti di sforzo",
+                    "idUser": 0,
+                    "endDate": "0"
+                },
+                "MyStep": [
+                    {
+                        "idMyStep": 0,
+                        "idCommitment": 0,
+                        "name": "Riscaldamento",
+                        "unitMeasure": "m",
+                        "max": 300,
+                        "repetitionDay": 1,
+                        "type": "progression",
+                        "category": "SPORT"
+                    },
+                    {
+                        "idMyStep": 0,
+                        "idCommitment": 0,
+                        "name": "Allargatura gambe",
+                        "unitMeasure": "minuti",
+                        "max": 15,
+                        "repetitionDay": 1,
+                        "type": "checklist",
+                        "category": "SPORT"
+                    },
+                    {
+                        "idMyStep": 0,
+                        "idCommitment": 0,
+                        "name": "Spaccata",
+                        "unitMeasure": "minuti",
+                        "max": 15,
+                        "repetitionDay": 1,
+                        "type": "progression",
+                        "category": "SPORT"
+                    }
+                ]
+            }
         },
         {
             "idExercise": 91,
@@ -173,7 +215,7 @@
             "desc": "Esercizio pensato per chi è sciolto e vuole diventare più forte",
             "video": "Exercise-91.mp4",
             "image": "8.jpg",
-            "importData": "{\"MyCommitment\": {\"idCommitment\": 80,.../*TODO */"
+            "importData": ""
         }
     ],
     "CourseBought": [

@@ -22,7 +22,7 @@ class review {
             body.data.val != undefined
         ) {
             if (this.review.filter((r) => r.idUser == idUser && r.idCourse == body.data.idCourse).length > 0) {
-                return { code: 400, response: '{message: "review already exist"}' };
+                return { code: 401, response: '{message: "review already exist"}' };
             }
             let newReview = {
                 idCourse: body.data.idCourse,

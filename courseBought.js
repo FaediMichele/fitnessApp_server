@@ -47,6 +47,15 @@ class CourseBought {
                         Review: review,
                     },
                 };
+            } else if (body.method == "archiveCourse" && body.data.idCourse != undefined) {
+                let myCourse = this.courseBought.filter((c) => c.idUser == idUser && c.idCourse == body.data.idCourse);
+                if (myCourse.length == 0) {
+                    return { code: 401, response: '{"message": "Course not bought"}' };
+                }
+                myCourse = myCourse[0];
+                myCourse.isArchived = !myCourse.isArchived;
+                this.store.saveData("CourseBought", this.courseBought);
+                return { code: 200, response: { value: myCourse.isArchived } };
             }
         }
         return { code: 400, response: '{"message": "idSession is not correct"}' };
