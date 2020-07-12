@@ -1,50 +1,62 @@
 var functions = require("./util.js");
 
-const service = "user"
+const service = "user";
 const categories = ["sport", "mental", "social"];
 
 class user {
-    constructor(store) {
+    constructor(store, login) {
         this.store = store;
         this.service = service;
         this.users = this.store.getTable("User");
         this.levels = this.store.getTable("Level");
         this.Inscriptions = this.store.getTable("Inscription");
         this.lastId = functions.getBestInArray(this.users, "idUser", (id1, id2) => id1 - id2).idUser;
+        this.login = login;
     }
 
-    async manageGet(queryString) { }
+    async manageGet(queryString) {}
 
     async managePost(body) {
+        console.log(body);
         if (body.method == "addUser") {
-            if (body.data.user.firstname != "" && body.data.user.surname != "" && body.data.user.email != "" && body.data.user.hashPassword != "" && body.data.levels != undefined && body.data.levels.length > 0) {
-                if (this.users.filter(u => u.email == body.data.user.email).length != 0) {
+            if (
+                body.data.firstname != "" &&
+                body.data.surname != "" &&
+                body.data.email != "" &&
+                body.data.hashPassword != ""
+            ) {
+                if (this.users.filter((u) => u.email == body.data.email).length != 0) {
                     return { code: 400, response: '{message: "bad request. email already in use"}' };
                 }
                 this.lastId++;
-                let newUser = { idUser: this.lastId, firstname: body.data.user.firstname, surname: body.data.user.surname, email: body.data.user.email, hashPassword: body.data.user.hashPassword };
+                let newUser = {
+                    idUser: this.lastId,
+                    firstname: body.data.firstname,
+                    surname: body.data.surname,
+                    email: body.data.email,
+                    hashPassword: body.data.hashPassword,
+                };
 
-                let newLevels = [];
-                let tmp;
-                for (let i = 0; i < body.data.levels.length; i++) {
-                    tmp = this.checkLevel(body.data.levels[i], this.lastId);
-                    if (tmp != false) {
-                        newLevels.push(tmp);
-                    } else {
-                        newLevels = [];
-                        break;
-                    }
-                }
-                if (tmp == false) {
-                    return { code: 400, response: '{message: "bad request in levels"}' };
-                }
+                let newLevels = [
+                    { idUser: this.lastId, cat: "SPORT", PE: 1, level: 1 },
+                    { idUser: this.lastId, cat: "SOCIAL", PE: 1, level: 1 },
+                    { idUser: this.lastId, cat: "MENTAL", PE: 1, level: 1 },
+                ];
 
                 this.users.push(newUser);
                 this.store.saveData("User", this.users);
                 this.levels = this.levels.concat(newLevels);
                 this.store.saveData("Level", this.levels);
 
-                return { code: 200, response: '{idUser: "' + this.lastId + '"}' };
+                let d = await this.login.managePost({
+                    data: {
+                        email: newUser.email,
+                        hashPassword: newUser.hashPassword,
+                    },
+                });
+                console.log(d);
+
+                return { code: 200, response: d.response };
             }
             return { code: 400, response: '{message: "bad request in user"}' };
         } else if (body.method == "addInscription" && body.idSession != undefined) {
@@ -53,7 +65,9 @@ class user {
                 if (this.store.searchKey("School", "idSchool", body.data.idSchool) == undefined) {
                     return { code: 400, response: '{message: "bad request. School key not found"}' };
                 }
-                if (this.Inscriptions.filter(i => i.idUser == idUserFromSession && i.idSchool == body.data.idSchool)) {
+                if (
+                    this.Inscriptions.filter((i) => i.idUser == idUserFromSession && i.idSchool == body.data.idSchool)
+                ) {
                     return { code: 400, response: '{message: "bad request. Already inscripted in this school}' };
                 }
                 this.Inscriptions.push({ idUser: parseInt(idUserFromSession), idSchool: parseInt(body.data.idSchool) });
@@ -103,7 +117,9 @@ class user {
         } else if (body.method == "deleteInscription" && body.idSession != undefined) {
             let idUserFromSession = this.store.getIdUser(body.idSession);
             if (idUserFromSession != undefined && body.data.idSchool != undefined) {
-                this.Inscriptions = this.Inscriptions.filter(i => i.idUser != idUserFromSession && i.idSchool != body.data.idSchool);
+                this.Inscriptions = this.Inscriptions.filter(
+                    (i) => i.idUser != idUserFromSession && i.idSchool != body.data.idSchool
+                );
                 this.store.saveData("Inscription", this.Inscriptions);
                 return { code: 200, response: '{message: "ok"}' };
             }
@@ -136,7 +152,6 @@ class user {
         }
         return undefined;
     }
-
 }
 
 module.exports = user;

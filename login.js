@@ -160,6 +160,7 @@ class login {
             response.idUser = user.idUser;
 
             console.log("Login done(" + body.data.email + ")");
+            console.log(response);
             return { code: 200, response: response };
         }
 

@@ -20,7 +20,7 @@ const port = 8080;
 
 var store = new Storage();
 var login = new Login(store);
-var user = new User(store);
+var user = new User(store, login);
 var school = new School(store);
 var courseBought = new CourseBought(store);
 var exerciseInProgress = new ExerciseInProgress(store);
@@ -86,6 +86,7 @@ const app = async () => {
                             let d = await postservices[i].managePost(body, query);
                             code = d.code;
                             response = d.response;
+                            i--;
                             break;
                         }
                     }
@@ -97,6 +98,7 @@ const app = async () => {
                 res.writeHead(code, {
                     "Content-Type": "application/json",
                 });
+                console.log(response);
                 res.write(JSON.stringify(response), "UTF-8");
                 res.end();
             }
