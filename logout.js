@@ -43,17 +43,9 @@ class logout {
         if (idUser != undefined && body.data != undefined) {
             body = body.data;
             this.updateMyCommitment(idUser, body, newIdMap);
-            this.updateUser(idUser, body, newIdMap);
             this.updateLevel(idUser, body, newIdMap);
-            this.updateMyInscription(idUser, body, newIdMap);
             this.updateMyStep(idUser, body, newIdMap);
-            this.updateCourseBought(idUser, body, newIdMap);
             this.updateMyStepDone(idUser, body, newIdMap);
-            this.updateExerciseInProgress(idUser, body, newIdMap);
-            this.updateFriendship(idUser, body, newIdMap);
-            this.updateHistory(idUser, body, newIdMap);
-            this.updateMessage(idUser, body, newIdMap);
-            this.updateReview(idUser, body, newIdMap);
             console.log("ok");
             return { code: 200, response: '{message: "ok"}' };
         }
@@ -61,26 +53,6 @@ class logout {
             code: 404,
             response: '{message: "Logout failed. Param was wrong"}',
         };
-    }
-
-    updateUser(idUser, body, newIdMap) {
-        if (body.User.length > 0) {
-            let usrNewData = body.User.filter((u) => u.idUser == idUser)[0];
-            let i = this.getNumUserById(idUser);
-            if (usrNewData.email != this.users[i].email) {
-                this.users[i].email = usrNewData.email;
-            }
-            if (usrNewData.surname != this.users[i].surname) {
-                this.users[i].surname = usrNewData.surname;
-            }
-            if (usrNewData.firstname != this.users[i].firstname) {
-                this.users[i].firstname = usrNewData.firstname;
-            }
-            if (usrNewData.hashPassword != this.users[i].hashPassword) {
-                this.users[i].hashPassword = usrNewData.hashPassword;
-            }
-            this.store.saveData("User", this.users);
-        }
     }
 
     updateLevel(idUser, body, newIdMap) {
@@ -117,30 +89,6 @@ class logout {
             }
             this.commitment = this.commitment.filter((c) => c.idUser != idUser).concat(comms);
             this.store.saveData("MyCommitment", this.commitment);
-        }
-    }
-
-    updateMyInscription(idUser, body, newIdMap) {
-        if (body.MyCommitment.length > 0) {
-            let insc = body.Inscription.filter((i) => i.idUser == idUser);
-            for (let i = 0; i < insc.length; i++) {
-                let j = 0;
-                for (; j < this.inscriptions.length; j++) {
-                    if (this.inscriptions[j].idUser == idUser && this.inscriptions[j].idSchool == insc[i].idSchool) {
-                        break;
-                    }
-                }
-                if (j == this.inscriptions.length) {
-                    this.inscriptions.push({
-                        idUser: idUser,
-                        idSchool: insc[i].idSchool,
-                    });
-                }
-                this.inscriptions = this.inscriptions.filter(
-                    (i) => i.idUser != idUser || insc.filter((is) => is.idSchool == i.idSchool).length > 0
-                );
-                this.store.saveData("Inscription", this.inscriptions);
-            }
         }
     }
 
@@ -196,20 +144,6 @@ class logout {
         }
     }
 
-    updateCourseBought(idUser, body, newIdMap) {
-        let coursesBought = body.CourseBought.filter((c) => c.idUser == idUser);
-        this.coursesBought = this.coursesBought.filter(
-            (c) =>
-                c.idUser != idUser &&
-                this.checkNotNull(c.idCourse) &&
-                this.checkNotNull(c.level) &&
-                this.checkNotNull(c.purchaseDate)
-        );
-        this.coursesBought = this.coursesBought.concat(coursesBought);
-
-        this.store.saveData("CourseBought", this.coursesBought);
-    }
-
     // require stepdone
     updateMyStepDone(idUser, body, newIdMap) {
         let stepDone = body.MyStepDone;
@@ -227,43 +161,6 @@ class logout {
             .filter((s) => !newId.includes(s.idMyStep))
             .concat(stepDone.filter((s) => this.checkNotNull(s.idMyStep)));
         this.store.saveData("MyStepDone", this.stepDone);
-    }
-
-    updateExerciseInProgress(idUser, body, newIdMap) {
-        let ex = body.ExerciseInProgress.filter(
-            (e) =>
-                e.idUser == idUser &&
-                this.checkNotNull(e.idExercise) &&
-                this.checkNotNull(e.progression) &&
-                this.checkNotNull(e.numStep) &&
-                this.checkNotNull(e.lastEdit)
-        );
-        this.exerciseInProgress = this.exerciseInProgress.filter((e) => e.idUser != idUser).concat(ex);
-        this.store.saveData("ExerciseInProgress", this.exerciseInProgress);
-    }
-
-    updateFriendship(idUser, body, newIdMap) {
-        let fr = body.Friendship.filter((f) => f.idUser1 == idUser || f.idUser2 == idUser);
-        this.friendship = this.friendship.filter((e) => e.idUser1 != idUser && e.idUser2 != idUser).concat(fr);
-        this.store.saveData("Friendship", this.friendship);
-    }
-
-    updateHistory(idUser, body, newIdMap) {
-        let hi = body.History.filter((h) => h.idUser == idUser);
-        this.history = this.history.filter((h) => h.idUser != idUser).concat(hi);
-        this.store.saveData("History", this.history);
-    }
-
-    updateMessage(idUser, body, newIdMap) {
-        let msg = body.Message.filter((m) => m.idSender == idUser || m.idReceiver == idUser);
-        this.message = this.message.filter((m) => m.idSender != idUser && m.idReceiver != idUser).concat(msg);
-        this.store.saveData("Message", this.message);
-    }
-
-    updateReview(idUser, body, newIdMap) {
-        let r = body.Review.filter((r) => r.idUser == idUser);
-        this.review = this.review.filter((r) => r.idUser != idUser).concat(r);
-        this.store.saveData("Review", this.review);
     }
 
     checkNotNull(val) {

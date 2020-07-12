@@ -67,20 +67,25 @@ class login {
                 this.store.getTable("School"),
                 "idSchool"
             );
+            response.School = this.makeUnique(response.School, "idSchool");
+            response.Course = response.Course.concat(
+                this.store.getTable("Course").filter((c) => response.School.map((s) => s.idSchool).includes(c.idSchool))
+            );
+            response.Course = this.makeUnique(response.Course, "idCourse");
 
-            // make school unique
-            let idAnalyzed = [];
-            response.School = response.School.filter((f) => {
-                if (idAnalyzed.includes(f.idSchool)) {
-                    return false;
-                }
-                idAnalyzed.push(f.idSchool);
-                return true;
-            });
+            // ADD all bought course, for every couse add all school, for every school add course -> add review
 
             response.User = response.User.concat(
                 functions.getObjectsArray2inArray1(response.School, "idTrainer", this.store.getTable("User"), "idUser")
             );
+
+            Array.prototype.average = function () {
+                return this.length == 0 ? 0 : this.reduce((a, b) => a + b) / this.length;
+            };
+
+            response.Level = this.store
+                .getTable("Level")
+                .filter((l) => functions.searchObjectInArray(response.User, l.idUser, "idUser"));
 
             response.Review = functions.getObjectsArray2inArray1(
                 response.Course,
@@ -89,7 +94,23 @@ class login {
                 "idCourse"
             );
 
-            idAnalyzed = {};
+            response.User = response.User.concat(
+                functions.getObjectsArray2inArray1(response.Review, "idUser", this.store.getTable("User"), "idUser")
+            );
+
+            response.User = this.makeUnique(response.User, "idUser");
+
+            response.Course.forEach((c) => {
+                c.isBought = true;
+                c.review = response.Review.filter((r) => r.idCourse == c.idCourse)
+                    .map((r) => r.val)
+                    .average();
+                c.isArchived = courseBought.filter(
+                    (cb) => cb.idCourse == c.idCourse && cb.idUser == user.idUser
+                )[0].isArchived;
+            });
+
+            let idAnalyzed = {};
             // only 10 review for course
             response.Review.filter((r) => {
                 if (idAnalyzed[r.idCourse] == undefined) {
@@ -100,39 +121,6 @@ class login {
                     return true;
                 }
                 return false;
-            });
-
-            response.User = response.User.concat(
-                functions.getObjectsArray2inArray1(response.Review, "idUser", this.store.getTable("User"), "idUser")
-            );
-
-            // make user unique
-            idAnalyzed = [];
-            response.User = response.User.filter((u) => {
-                if (idAnalyzed.includes(u.idUser)) {
-                    return false;
-                }
-                idAnalyzed.push(u.idUser);
-                return true;
-            });
-
-            Array.prototype.average = function () {
-                return this.length == 0 ? 0 : this.reduce((a, b) => a + b) / this.length;
-            };
-
-            response.Level = this.store
-                .getTable("Level")
-                .filter((l) => functions.searchObjectInArray(response.User, l.idUser, "idUser"));
-            console.log("*", response.User, "*");
-
-            response.Course.forEach((c) => {
-                c.isBought = true;
-                c.review = response.Review.filter((r) => r.idCourse == c.idCourse)
-                    .map((r) => r.val)
-                    .average();
-                c.isArchived = courseBought.filter(
-                    (cb) => cb.idCourse == c.idCourse && cb.idUser == user.idUser
-                )[0].isArchived;
             });
 
             response.Exercise = this.store
@@ -165,6 +153,17 @@ class login {
         }
 
         return { code: 404, response: '{message: "Login failed. Param was wrong"}' };
+    }
+
+    makeUnique(array, key) {
+        let idAnalyzed = [];
+        return array.filter((a) => {
+            if (idAnalyzed.includes(a[key])) {
+                return false;
+            }
+            idAnalyzed.push(a[key]);
+            return true;
+        });
     }
 }
 
