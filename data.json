@@ -1,358 +1,351 @@
 {
-    "User": [
-        {
-            "idUser": 123,
-            "firstname": "michele",
-            "surname": "faedi",
-            "email": "a@a.com",
-            "hashPassword": "ed02457b5c41d964dbd2f2a609d63fe1bb7528dbe55e1abf5b52c249cd735797",
-            "image": "1.jpg"
-        },
-        {
-            "idUser": 321,
-            "firstname": "cristian",
-            "surname": "casadei",
-            "email": "cristian.casadei6@studio.unibo.it",
-            "hashPassword": "hashPaswd1",
-            "image": "2.jpg"
-        },
-        {
-            "idUser": 322,
-            "firstname": "naed",
-            "surname": "faedi",
-            "email": "a",
-            "hashPassword": "hashPaswd",
-            "image": "3.jpg"
-        },
-        {
-            "idUser": 323,
-            "firstname": "Piermenti",
-            "surname": "Strati",
-            "email": "piermenti.strati@gmail.com",
-            "hashPassword": "ed02457b5c41d964dbd2f2a609d63fe1bb7528dbe55e1abf5b52c249cd735797",
-            "image": "4.jpg"
-        },
-        {
-            "idUser": 324,
-            "firstname": "Michele",
-            "surname": "Faedi",
-            "email": "michele.faedi@studio.unibo.com",
-            "hashPassword": "b2d8b880c0c117a83ab610a7611a469249d3daff92d609bd2edecea555120dd3"
-        }
-    ],
-    "Friendship": [
-        { "idFriendship": 2, "idUser1": 123, "idUser2": 322 },
-        { "idFriendship": 1, "idUser1": 123, "idUser2": 321 }
-    ],
-    "FriendshipRequest": [{ "idSender": 322, "idReceiver": 123 }],
-    "Message": [
-        {
-            "idFriendship": 1,
-            "date": "2020-05-01T18:25:43.000Z",
-            "idSender": 123,
-            "idReceiver": 321,
-            "message": "Ciao questo è un messaggio"
-        },
-        {
-            "idFriendship": 2,
-            "date": "2020-05-01T18:25:43.000Z",
-            "idSender": 123,
-            "idReceiver": 322,
-            "message": "ciao"
-        },
-        { "idFriendship": 1, "date": "2020-07-06T23:12:52.314Z", "message": "asd", "idSender": 123, "idReceiver": 321 },
-        { "idFriendship": 1, "date": "2020-07-06T23:13:59.928Z", "message": "ccc", "idSender": 123, "idReceiver": 321 },
-        {
-            "idFriendship": 1,
-            "date": "2020-07-06T23:14:09.014Z",
-            "message": "ssda",
-            "idSender": 123,
-            "idReceiver": 321
-        },
-        { "idFriendship": 1, "date": "2020-07-06T23:14:09.257Z", "message": "sd", "idSender": 123, "idReceiver": 321 },
-        { "idFriendship": 1, "date": "2020-07-06T23:14:09.495Z", "message": "asd", "idSender": 123, "idReceiver": 321 },
-        {
-            "idFriendship": 1,
-            "date": "2020-07-06T23:20:20.495Z",
-            "message": "Sono il fantasma del natale passato",
-            "idSender": 321,
-            "idReceiver": 123
-        }
-    ],
-    "Level": [
-        { "idUser": 123, "cat": "SPORT", "PE": 1, "level": 2 },
-        { "idUser": 123, "cat": "MENTAL", "PE": 1, "level": 2 },
-        { "idUser": 123, "cat": "SOCIAL", "PE": 1, "level": 2 },
-        { "idUser": 321, "cat": "SPORT", "PE": 1, "level": 2 },
-        { "idUser": 321, "cat": "MENTAL", "PE": 1, "level": 2 },
-        { "idUser": 321, "cat": "SOCIAL", "PE": 1, "level": 2 },
-        { "idUser": 322, "cat": "SPORT", "PE": 12300, "level": 100 },
-        { "idUser": 322, "cat": "MENTAL", "PE": 12300, "level": 100 },
-        { "idUser": 322, "cat": "SOCIAL", "PE": 12300, "level": 100 },
-        { "idUser": 324, "cat": "SPORT", "PE": 1, "level": 1 },
-        { "idUser": 324, "cat": "SOCIAL", "PE": 1, "level": 1 },
-        { "idUser": 324, "cat": "MENTAL", "PE": 1, "level": 1 }
-    ],
-    "School": [
-        { "idSchool": 1, "name": "palestra giubilopoli", "idTrainer": 321, "desc": "descrizione", "image": "4.jpg" },
-        { "idSchool": 2, "name": "palestra acquafoglia", "desc": "descrizione", "idTrainer": 321, "image": "5.jpg" },
-        {
-            "idSchool": 3,
-            "name": "palestra impossibile",
-            "desc": "questa palestra è la più difficile del pianeta",
-            "idTrainer": 323,
-            "image": "6.jpg"
-        }
-    ],
-    "Review": [
-        {
-            "idCourse": 422,
-            "idUser": 123,
-            "val": 9,
-            "comment": "il corso è molto bello",
-            "date": "2020-05-02T20:25:43Z"
-        },
-        {
-            "idCourse": 423,
-            "idUser": 322,
-            "val": 1,
-            "comment": "il corso è troppo difficile",
-            "date": "2020-05-02T20:25:43Z"
-        },
-        {
-            "idCourse": 423,
-            "idUser": 323,
-            "val": 10,
-            "comment": "il corso è estremamente difficile ma molto gratificante",
-            "date": "2020-05-02T20:25:43Z"
-        },
-        { "idCourse": 423, "idUser": 123, "val": 3, "comment": "AS", "date": "2020-07-10T17:37:44.373Z" },
-        { "idCourse": 420, "idUser": 123, "val": 9, "comment": "è facile", "date": "2020-07-11T14:00:24.299Z" }
-    ],
-    "Course": [
-        {
-            "idCourse": 420,
-            "idSchool": 1,
-            "name": "Corso per principianti",
-            "desc": "Corso per le persone che intendono iniziare ad allenarsi pur non avendo esperienza",
-            "video": "Course-420.mp4",
-            "cat": "SPORT",
-            "image": ["6.jpg"],
-            "price": 100,
-            "isBought": true,
-            "review": 9,
-            "isArchived": false
-        },
-        {
-            "idCourse": 422,
-            "idSchool": 2,
-            "name": "Corso per avanzati",
-            "desc": "Corso per le atleti esperti nel settore",
-            "video": "Course-422.mp4",
-            "cat": "SPORT",
-            "image": ["13.jpg", "11.jpg", "12.jpg", "10.jpg"],
-            "price": 1000,
-            "review": 9,
-            "isArchived": false
-        },
-        {
-            "idCourse": 423,
-            "idSchool": 3,
-            "name": "Corso per ironman",
-            "desc": "Corso per le persone che vogliono diventare ironman",
-            "video": "Course-422.mp4",
-            "cat": "SPORT",
-            "image": ["13.jpg", "11.jpg", "12.jpg", "10.jpg"],
-            "price": 10000,
-            "review": 4.666666666666667
-        }
-    ],
-    "Exercise": [
-        {
-            "idExercise": 90,
-            "idCourse": 420,
-            "name": "streching",
-            "desc": "Esercizio pensato per chi non è sciolto e vuole diventare più agile",
-            "video": "Exercise-90.mp4",
-            "image": "7.jpg",
-            "importData": {
-                "MyCommitment": {
-                    "idCommitment": 0,
-                    "creationDate": "0",
-                    "name": "Strechinng iniziale",
-                    "desc": "Per fare streaching è importante mantenere la schiena dritta e il mento allo sterno durante tutti i movimenti di sforzo",
-                    "idUser": 0,
-                    "endDate": "0"
-                },
-                "MyStep": [
-                    {
-                        "idMyStep": 0,
-                        "idCommitment": 0,
-                        "name": "Riscaldamento",
-                        "unitMeasure": "m",
-                        "max": 300,
-                        "repetitionDay": 1,
-                        "type": "progression",
-                        "category": "SPORT"
-                    },
-                    {
-                        "idMyStep": 0,
-                        "idCommitment": 0,
-                        "name": "Allargatura gambe",
-                        "unitMeasure": "minuti",
-                        "max": 15,
-                        "repetitionDay": 1,
-                        "type": "checklist",
-                        "category": "SPORT"
-                    },
-                    {
-                        "idMyStep": 0,
-                        "idCommitment": 0,
-                        "name": "Spaccata",
-                        "unitMeasure": "minuti",
-                        "max": 15,
-                        "repetitionDay": 1,
-                        "type": "progression",
-                        "category": "SPORT"
-                    }
-                ]
-            }
-        },
-        {
-            "idExercise": 91,
-            "idCourse": 422,
-            "name": "streching",
-            "desc": "Esercizio pensato per chi è sciolto e vuole diventare più forte",
-            "video": "Exercise-91.mp4",
-            "image": "8.jpg",
-            "importData": ""
-        }
-    ],
-    "CourseBought": [
-        { "idCourse": 420, "idUser": 123, "isArchived": false },
-        { "idCourse": 422, "idUser": 123, "isArchived": false },
-        { "idUser": 123, "idCourse": 423, "isArchived": false }
-    ],
-    "MyCommitment": [
-        {
-            "idCommitment": 73,
-            "creationDate": "2020-05-02T20:25:43Z",
-            "name": "studiare mobile",
-            "desc": "Fare il progetto in android",
-            "idUser": 123,
-            "endDate": "0"
-        },
-        {
-            "idCommitment": 78,
-            "creationDate": "2020-05-24T14:40:57Z",
-            "name": "dimagrire",
-            "desc": "dimagrire per l'estate",
-            "idUser": 123,
-            "endDate": "0"
-        },
-        {
-            "idCommitment": 79,
-            "creationDate": "2020-06-01T14:37:06Z",
-            "name": "Studiare",
-            "desc": "Studiare per la sessione di giugno",
-            "idUser": 123,
-            "endDate": "2020-07-08T14:09:02.183Z"
-        },
-        {
-            "idCommitment": 80,
-            "creationDate": "2020-07-07T10:37:06Z",
-            "name": "Impegno utente 3",
-            "desc": "Studiare per la sessione di giugno",
-            "idUser": 322,
-            "endDate": "0"
-        }
-    ],
-    "MyStep": [
-        {
-            "idMyStep": 42,
-            "idCommitment": 73,
-            "name": "fare database sql",
-            "unitMeasure": "minuti",
-            "max": 300,
-            "repetitionDay": 1,
-            "type": "checklist",
-            "category": "MENTAL"
-        },
-        {
-            "idMyStep": 45,
-            "idCommitment": 78,
-            "name": "mangiare tante mele",
-            "unitMeasure": "mele",
-            "max": 5,
-            "repetitionDay": 1,
-            "type": "progression",
-            "category": "SOCIAL"
-        },
-        {
-            "idMyStep": 46,
-            "idCommitment": 78,
-            "name": "correre 15 km",
-            "unitMeasure": "km",
-            "max": 15,
-            "repetitionDay": 7,
-            "type": "progression",
-            "category": "SPORT"
-        },
-        {
-            "idMyStep": 47,
-            "idCommitment": 79,
-            "name": "Studiare metodi numerici",
-            "unitMeasure": "ore",
-            "max": 10,
-            "repetitionDay": 1,
-            "type": "progression",
-            "category": "MENTAL"
-        },
-        {
-            "idMyStep": 48,
-            "idCommitment": 79,
-            "name": "Studiare mobile",
-            "unitMeasure": "ore",
-            "max": 6,
-            "repetitionDay": 1,
-            "type": "progression",
-            "category": "MENTAL"
-        },
-        {
-            "idMyStep": 49,
-            "idCommitment": 80,
-            "name": "Studiare Giapponese",
-            "unitMeasure": "ore",
-            "max": 6,
-            "repetitionDay": 1,
-            "type": "progression",
-            "category": "MENTAL"
-        }
-    ],
-    "MyStepDone": [
-        { "idMyStep": 43, "dateStart": "2020-06-27T14:37:02Z", "result": 0 },
-        { "idMyStep": 44, "dateStart": "2020-06-27T14:37:03Z", "result": 0 },
-        { "idMyStep": 42, "dateStart": "2020-06-27T14:37:01Z", "result": 100 },
-        { "idMyStep": 42, "dateStart": "2020-07-02T09:38:33Z", "result": 100 },
-        { "idMyStep": 45, "dateStart": "2020-06-27T14:37:04Z", "result": 3 },
-        { "idMyStep": 46, "dateStart": "2020-06-25T14:37:05Z", "result": 10 },
-        { "idMyStep": 47, "dateStart": "2020-06-11T14:37:05Z", "result": 5 },
-        { "idMyStep": 47, "dateStart": "2020-06-13T14:37:05Z", "result": 10 },
-        { "idMyStep": 47, "dateStart": "2020-06-16T14:37:05Z", "result": 3 },
-        { "idMyStep": 47, "dateStart": "2020-06-17T14:37:05Z", "result": 10 },
-        { "idMyStep": 47, "dateStart": "2020-06-28T08:00:05Z", "result": 10 },
-        { "idMyStep": 48, "dateStart": "2020-06-27T14:37:09Z", "result": 5 }
-    ],
-    "Session": [
-        {
-            "idUser": 123,
-            "lastLogin": "2020-07-10T15:22:27.559Z",
-            "idSession": "a91da9802abe80b57c40322acbf0816d8a40637b"
-        },
-        {
-            "idUser": 324,
-            "lastLogin": "2020-07-12T11:01:01.645Z",
-            "idSession": "710aaf519ec2accf882e487ad589bbda1ee52294"
-        }
-    ]
+	"User": [
+		{
+			"idUser": 123,
+			"firstname": "michele",
+			"surname": "faedi",
+			"email": "a@a.com",
+			"hashPassword": "ed02457b5c41d964dbd2f2a609d63fe1bb7528dbe55e1abf5b52c249cd735797",
+			"image": "1.jpg"
+		},
+		{
+			"idUser": 321,
+			"firstname": "cristian",
+			"surname": "casadei",
+			"email": "cristian.casadei6@studio.unibo.it",
+			"hashPassword": "hashPaswd1",
+			"image": "2.jpg"
+		},
+		{
+			"idUser": 322,
+			"firstname": "naed",
+			"surname": "faedi",
+			"email": "a",
+			"hashPassword": "hashPaswd",
+			"image": "3.jpg"
+		},
+		{
+			"idUser": 323,
+			"firstname": "Piermenti",
+			"surname": "Strati",
+			"email": "piermenti.strati@gmail.com",
+			"hashPassword": "ed02457b5c41d964dbd2f2a609d63fe1bb7528dbe55e1abf5b52c249cd735797",
+			"image": "4.jpg"
+		},
+		{
+			"idUser": 324,
+			"firstname": "Michele",
+			"surname": "Faedi",
+			"email": "michele.faedi@studio.unibo.com",
+			"hashPassword": "b2d8b880c0c117a83ab610a7611a469249d3daff92d609bd2edecea555120dd3"
+		}
+	],
+	"Friendship": [ { "idFriendship": 2, "idUser1": 123, "idUser2": 322 }, { "idFriendship": 1, "idUser1": 123, "idUser2": 321 } ],
+	"FriendshipRequest": [ { "idSender": 322, "idReceiver": 123 } ],
+	"Message": [
+		{
+			"idFriendship": 1,
+			"date": "2020-05-01T18:25:43.000Z",
+			"idSender": 123,
+			"idReceiver": 321,
+			"message": "Ciao questo è un messaggio"
+		},
+		{
+			"idFriendship": 2,
+			"date": "2020-05-01T18:25:43.000Z",
+			"idSender": 123,
+			"idReceiver": 322,
+			"message": "ciao"
+		},
+		{ "idFriendship": 1, "date": "2020-07-06T23:12:52.314Z", "message": "asd", "idSender": 123, "idReceiver": 321 },
+		{ "idFriendship": 1, "date": "2020-07-06T23:13:59.928Z", "message": "ccc", "idSender": 123, "idReceiver": 321 },
+		{
+			"idFriendship": 1,
+			"date": "2020-07-06T23:14:09.014Z",
+			"message": "ssda",
+			"idSender": 123,
+			"idReceiver": 321
+		},
+		{ "idFriendship": 1, "date": "2020-07-06T23:14:09.257Z", "message": "sd", "idSender": 123, "idReceiver": 321 },
+		{ "idFriendship": 1, "date": "2020-07-06T23:14:09.495Z", "message": "asd", "idSender": 123, "idReceiver": 321 },
+		{
+			"idFriendship": 1,
+			"date": "2020-07-06T23:20:20.495Z",
+			"message": "Sono il fantasma del natale passato",
+			"idSender": 321,
+			"idReceiver": 123
+		}
+	],
+	"Level": [
+		{ "idUser": 123, "cat": "SPORT", "PE": 1, "level": 2 },
+		{ "idUser": 123, "cat": "MENTAL", "PE": 1, "level": 2 },
+		{ "idUser": 123, "cat": "SOCIAL", "PE": 1, "level": 2 },
+		{ "idUser": 321, "cat": "SPORT", "PE": 1, "level": 2 },
+		{ "idUser": 321, "cat": "MENTAL", "PE": 1, "level": 2 },
+		{ "idUser": 321, "cat": "SOCIAL", "PE": 1, "level": 2 },
+		{ "idUser": 322, "cat": "SPORT", "PE": 12300, "level": 100 },
+		{ "idUser": 322, "cat": "MENTAL", "PE": 12300, "level": 100 },
+		{ "idUser": 322, "cat": "SOCIAL", "PE": 12300, "level": 100 },
+		{ "idUser": 324, "cat": "SPORT", "PE": 1, "level": 1 },
+		{ "idUser": 324, "cat": "SOCIAL", "PE": 1, "level": 1 },
+		{ "idUser": 324, "cat": "MENTAL", "PE": 1, "level": 1 }
+	],
+	"School": [
+		{ "idSchool": 1, "name": "palestra giubilopoli", "idTrainer": 321, "desc": "descrizione", "image": "4.jpg" },
+		{ "idSchool": 2, "name": "palestra acquafoglia", "desc": "descrizione", "idTrainer": 321, "image": "5.jpg" },
+		{
+			"idSchool": 3,
+			"name": "palestra impossibile",
+			"desc": "questa palestra è la più difficile del pianeta",
+			"idTrainer": 323,
+			"image": "6.jpg"
+		}
+	],
+	"Review": [
+		{
+			"idCourse": 422,
+			"idUser": 123,
+			"val": 9,
+			"comment": "il corso è molto bello",
+			"date": "2020-05-02T20:25:43Z"
+		},
+		{
+			"idCourse": 423,
+			"idUser": 322,
+			"val": 1,
+			"comment": "il corso è troppo difficile",
+			"date": "2020-05-02T20:25:43Z"
+		},
+		{
+			"idCourse": 423,
+			"idUser": 323,
+			"val": 10,
+			"comment": "il corso è estremamente difficile ma molto gratificante",
+			"date": "2020-05-02T20:25:43Z"
+		},
+		{ "idCourse": 423, "idUser": 123, "val": 3, "comment": "AS", "date": "2020-07-10T17:37:44.373Z" },
+		{ "idCourse": 420, "idUser": 123, "val": 9, "comment": "è facile", "date": "2020-07-11T14:00:24.299Z" }
+	],
+	"Course": [
+		{
+			"idCourse": 420,
+			"idSchool": 1,
+			"name": "Corso per principianti",
+			"desc": "Corso per le persone che intendono iniziare ad allenarsi pur non avendo esperienza",
+			"video": "Course-420.mp4",
+			"cat": "SPORT",
+			"image": [ "6.jpg" ],
+			"price": 100,
+			"isBought": true,
+			"review": 9,
+			"isArchived": false
+		},
+		{
+			"idCourse": 422,
+			"idSchool": 2,
+			"name": "Corso per avanzati",
+			"desc": "Corso per le atleti esperti nel settore",
+			"video": "Course-422.mp4",
+			"cat": "SPORT",
+			"image": [ "13.jpg", "11.jpg", "12.jpg", "10.jpg" ],
+			"price": 1000,
+			"review": 9,
+			"isArchived": false
+		},
+		{
+			"idCourse": 423,
+			"idSchool": 3,
+			"name": "Corso per ironman",
+			"desc": "Corso per le persone che vogliono diventare ironman",
+			"video": "Course-422.mp4",
+			"cat": "SPORT",
+			"image": [ "13.jpg", "11.jpg", "12.jpg", "10.jpg" ],
+			"price": 10000,
+			"review": 4.666666666666667
+		}
+	],
+	"Exercise": [
+		{
+			"idExercise": 90,
+			"idCourse": 420,
+			"name": "streching",
+			"desc": "Esercizio pensato per chi non è sciolto e vuole diventare più agile",
+			"video": "Exercise-90.mp4",
+			"image": "7.jpg",
+			"importData": {
+				"MyCommitment": {
+					"idCommitment": 0,
+					"creationDate": "0",
+					"name": "Strechinng iniziale",
+					"desc": "Per fare streaching è importante mantenere la schiena dritta e il mento allo sterno durante tutti i movimenti di sforzo",
+					"idUser": 0,
+					"endDate": "0"
+				},
+				"MyStep": [
+					{
+						"idMyStep": 0,
+						"idCommitment": 0,
+						"name": "Riscaldamento",
+						"unitMeasure": "m",
+						"max": 300,
+						"repetitionDay": 1,
+						"type": "progression",
+						"category": "SPORT"
+					},
+					{
+						"idMyStep": 0,
+						"idCommitment": 0,
+						"name": "Allargatura gambe",
+						"unitMeasure": "minuti",
+						"max": 15,
+						"repetitionDay": 1,
+						"type": "checklist",
+						"category": "SPORT"
+					},
+					{
+						"idMyStep": 0,
+						"idCommitment": 0,
+						"name": "Spaccata",
+						"unitMeasure": "minuti",
+						"max": 15,
+						"repetitionDay": 1,
+						"type": "progression",
+						"category": "SPORT"
+					}
+				]
+			}
+		},
+		{
+			"idExercise": 91,
+			"idCourse": 422,
+			"name": "streching",
+			"desc": "Esercizio pensato per chi è sciolto e vuole diventare più forte",
+			"video": "Exercise-91.mp4",
+			"image": "8.jpg",
+			"importData": ""
+		}
+	],
+	"CourseBought": [ { "idCourse": 420, "idUser": 123, "isArchived": false }, { "idUser": 123, "idCourse": 423, "isArchived": false } ],
+	"MyCommitment": [
+		{
+			"idCommitment": 73,
+			"creationDate": "2020-05-02T20:25:43Z",
+			"name": "studiare mobile",
+			"desc": "Fare il progetto in android",
+			"idUser": 123,
+			"endDate": "0"
+		},
+		{
+			"idCommitment": 78,
+			"creationDate": "2020-05-24T14:40:57Z",
+			"name": "dimagrire",
+			"desc": "dimagrire per l'estate",
+			"idUser": 123,
+			"endDate": "0"
+		},
+		{
+			"idCommitment": 79,
+			"creationDate": "2020-06-01T14:37:06Z",
+			"name": "Studiare",
+			"desc": "Studiare per la sessione di giugno",
+			"idUser": 123,
+			"endDate": "2020-07-08T14:09:02.183Z"
+		},
+		{
+			"idCommitment": 80,
+			"creationDate": "2020-07-07T10:37:06Z",
+			"name": "Impegno utente 3",
+			"desc": "Studiare per la sessione di giugno",
+			"idUser": 322,
+			"endDate": "0"
+		}
+	],
+	"MyStep": [
+		{
+			"idMyStep": 42,
+			"idCommitment": 73,
+			"name": "fare database sql",
+			"unitMeasure": "minuti",
+			"max": 300,
+			"repetitionDay": 1,
+			"type": "checklist",
+			"category": "MENTAL"
+		},
+		{
+			"idMyStep": 45,
+			"idCommitment": 78,
+			"name": "mangiare tante mele",
+			"unitMeasure": "mele",
+			"max": 5,
+			"repetitionDay": 1,
+			"type": "progression",
+			"category": "SOCIAL"
+		},
+		{
+			"idMyStep": 46,
+			"idCommitment": 78,
+			"name": "correre 15 km",
+			"unitMeasure": "km",
+			"max": 15,
+			"repetitionDay": 7,
+			"type": "progression",
+			"category": "SPORT"
+		},
+		{
+			"idMyStep": 47,
+			"idCommitment": 79,
+			"name": "Studiare metodi numerici",
+			"unitMeasure": "ore",
+			"max": 10,
+			"repetitionDay": 1,
+			"type": "progression",
+			"category": "MENTAL"
+		},
+		{
+			"idMyStep": 48,
+			"idCommitment": 79,
+			"name": "Studiare mobile",
+			"unitMeasure": "ore",
+			"max": 6,
+			"repetitionDay": 1,
+			"type": "progression",
+			"category": "MENTAL"
+		},
+		{
+			"idMyStep": 49,
+			"idCommitment": 80,
+			"name": "Studiare Giapponese",
+			"unitMeasure": "ore",
+			"max": 6,
+			"repetitionDay": 1,
+			"type": "progression",
+			"category": "MENTAL"
+		}
+	],
+	"MyStepDone": [
+		{ "idMyStep": 43, "dateStart": "2020-06-27T14:37:02Z", "result": 0 },
+		{ "idMyStep": 44, "dateStart": "2020-06-27T14:37:03Z", "result": 0 },
+		{ "idMyStep": 42, "dateStart": "2020-06-27T14:37:01Z", "result": 100 },
+		{ "idMyStep": 42, "dateStart": "2020-07-02T09:38:33Z", "result": 100 },
+		{ "idMyStep": 45, "dateStart": "2020-06-27T14:37:04Z", "result": 3 },
+		{ "idMyStep": 46, "dateStart": "2020-06-25T14:37:05Z", "result": 10 },
+		{ "idMyStep": 47, "dateStart": "2020-06-11T14:37:05Z", "result": 5 },
+		{ "idMyStep": 47, "dateStart": "2020-06-13T14:37:05Z", "result": 10 },
+		{ "idMyStep": 47, "dateStart": "2020-06-16T14:37:05Z", "result": 3 },
+		{ "idMyStep": 47, "dateStart": "2020-06-17T14:37:05Z", "result": 10 },
+		{ "idMyStep": 47, "dateStart": "2020-06-28T08:00:05Z", "result": 10 },
+		{ "idMyStep": 48, "dateStart": "2020-06-27T14:37:09Z", "result": 5 }
+	],
+	"Session": [
+		{
+			"idUser": 123,
+			"lastLogin": "2020-07-10T15:22:27.559Z",
+			"idSession": "a91da9802abe80b57c40322acbf0816d8a40637b"
+		},
+		{
+			"idUser": 324,
+			"lastLogin": "2020-07-12T11:01:01.645Z",
+			"idSession": "710aaf519ec2accf882e487ad589bbda1ee52294"
+		}
+	]
 }
