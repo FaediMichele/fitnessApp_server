@@ -40,11 +40,8 @@
             "hashPassword": "b2d8b880c0c117a83ab610a7611a469249d3daff92d609bd2edecea555120dd3"
         }
     ],
-    "Friendship": [
-        { "idFriendship": 2, "idUser1": 123, "idUser2": 322 },
-        { "idFriendship": 1, "idUser1": 123, "idUser2": 321 }
-    ],
-    "FriendshipRequest": [{ "idSender": 322, "idReceiver": 123 }],
+    "Friendship": [{ "idFriendship": 2, "idUser1": 123, "idUser2": 322, "blocked": -1 }],
+    "FriendshipRequest": [{ "idSender": 323, "idReceiver": 123 }],
     "Message": [
         {
             "idFriendship": 1,
@@ -77,7 +74,26 @@
             "message": "Sono il fantasma del natale passato",
             "idSender": 321,
             "idReceiver": 123
-        }
+        },
+        { "idFriendship": 2, "date": "2020-07-13T12:25:52.170Z", "message": "asd", "idSender": 123, "idReceiver": 322 },
+        { "idFriendship": 2, "date": "2020-07-13T12:25:55.975Z", "message": "asd", "idSender": 123, "idReceiver": 322 },
+        { "idFriendship": 2, "date": "2020-07-13T12:26:06.968Z", "message": "asd", "idSender": 123, "idReceiver": 322 },
+        {
+            "idFriendship": 2,
+            "date": "2020-07-13T12:26:11.588Z",
+            "message": "ssss",
+            "idSender": 123,
+            "idReceiver": 322
+        },
+        {
+            "idFriendship": 2,
+            "date": "2020-07-13T12:26:21.115Z",
+            "message": "ciao pezzo de fa",
+            "idSender": 123,
+            "idReceiver": 322
+        },
+        { "idFriendship": 2, "date": "2020-07-13T12:28:51.094Z", "message": "ss", "idSender": 123, "idReceiver": 322 },
+        { "idFriendship": 2, "date": "2020-07-13T12:28:53.774Z", "message": "dw", "idSender": 123, "idReceiver": 322 }
     ],
     "Level": [
         { "idUser": 123, "cat": "SPORT", "PE": 1, "level": 2 },
@@ -335,28 +351,28 @@
         { "idMyStep": 42, "dateStart": "2020-07-02T09:38:33Z", "result": 100 },
         { "idMyStep": 42, "dateStart": "2020-07-12T14:40:52Z", "result": 300 },
         { "idMyStep": 45, "dateStart": "2020-06-27T14:37:04Z", "result": 3 },
-        { "idMyStep": 45, "dateStart": "2020-07-12T14:40:52Z", "result": 2 },
+        { "idMyStep": 45, "dateStart": "2020-07-12T14:40:52Z", "result": 5 },
         { "idMyStep": 46, "dateStart": "2020-06-25T14:37:05Z", "result": 10 },
-        { "idMyStep": 46, "dateStart": "2020-07-12T14:40:52Z", "result": 4 },
+        { "idMyStep": 46, "dateStart": "2020-07-12T14:40:52Z", "result": 15 },
         { "idMyStep": 47, "dateStart": "2020-06-11T14:37:05Z", "result": 5 },
         { "idMyStep": 47, "dateStart": "2020-06-13T14:37:05Z", "result": 10 },
         { "idMyStep": 47, "dateStart": "2020-06-16T14:37:05Z", "result": 3 },
         { "idMyStep": 47, "dateStart": "2020-06-17T14:37:05Z", "result": 10 },
         { "idMyStep": 47, "dateStart": "2020-06-28T08:00:05Z", "result": 10 },
+        { "idMyStep": 47, "dateStart": "2020-07-12T14:44:21Z", "result": 4 },
         { "idMyStep": 48, "dateStart": "2020-06-27T14:37:09Z", "result": 5 },
-        { "idMyStep": 47, "dateStart": "2020-07-12T14:44:21Z", "result": 3 },
         { "idMyStep": 48, "dateStart": "2020-07-12T14:44:21Z", "result": 4 }
     ],
     "Session": [
         {
-            "idUser": 123,
-            "lastLogin": "2020-07-10T15:22:27.559Z",
-            "idSession": "a91da9802abe80b57c40322acbf0816d8a40637b"
-        },
-        {
             "idUser": 324,
             "lastLogin": "2020-07-12T11:01:01.645Z",
             "idSession": "710aaf519ec2accf882e487ad589bbda1ee52294"
+        },
+        {
+            "idUser": 123,
+            "lastLogin": "2020-07-12T20:58:39.424Z",
+            "idSession": "90399359ffc2f61e18418167331b7bfa8ede3626"
         }
     ]
 }

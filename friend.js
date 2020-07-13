@@ -62,11 +62,13 @@ class friend {
             body.data.idFriendship != undefined &&
             body.data.message != undefined
         ) {
-            let tmp = this.store.searchKey("Friendship", "idFriendship", body.data.idFriendship);
+            let tmp = this.friendship.filter((f) => f.idFriendship == body.data.idFriendship)[0];
             if (tmp == undefined) {
                 return { code: 400, response: '{message: "bad request. idFriendship NotFound"}' };
             }
-            tmp = this.friendship[tmp];
+            if (tmp.blocked != idUser && tmp.blocked != -1) {
+                return { code: 400, response: '{message: "you are blocked"}' };
+            }
             let otherId = tmp.idUser1 == idUser ? tmp.idUser2 : tmp.idUser1;
             console.log(otherId);
             this.message.push({
@@ -84,7 +86,7 @@ class friend {
                 return { code: 400, response: '{message: "bad request. idFriendship NotFound"}' };
             }
             tmp = this.friendship[tmp];
-            if (tmp.idUser1 != idUser && tmp.idUser2 != idUser) {
+            if ((tmp.idUser1 != idUser && tmp.idUser2 != idUser) || (tmp.blocked != -1 && tmp.blocked != idUser)) {
                 console.log(tmp, idUser);
                 return { code: 400, response: '{message: "bad request. idFriendship not correct"}' };
             }
@@ -145,15 +147,19 @@ class friend {
                 return { code: 200, response: response };
             }
         } else if (body.method == "blockUser" && body.data.idFriend != undefined && body.data.idFriend != "") {
-            this.friendship = this.friendship.filter(
+            let friendship = this.friendship.filter(
                 (f) =>
-                    !(
-                        (f.idUser1 == idUser && f.idUser2 == body.data.idFriend) ||
-                        (f.idUser2 == idUser && f.idUser1 == body.data.idFriend)
-                    )
-            );
+                    (f.idUser1 == idUser && f.idUser2 == body.data.idFriend) ||
+                    (f.idUser2 == idUser && f.idUser1 == body.data.idFriend)
+            )[0];
+            console.log(friendship);
+            if (friendship.blocked == idUser) {
+                friendship.blocked = -1;
+            } else if (friendship.blocked == -1 || friendship.blocked == undefined) {
+                friendship.blocked = idUser;
+            }
             this.store.saveData("Friendship", this.friendship);
-            return { code: 200, response: '{message: "ok"}' };
+            return { code: 200, response: friendship };
         } else if (body.method == "getFriendshipRequest") {
             let userRequest = this.friendshipRequest.filter((f) => f.idReceiver == idUser);
 

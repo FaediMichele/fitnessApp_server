@@ -39,6 +39,7 @@ class logout {
 
     async managePost(body) {
         let idUser = this.store.getIdUser(body.idSession);
+        body.data = JSON.parse(body.data);
         let newIdMap = {};
         if (idUser != undefined && body.data != undefined) {
             body = body.data;
@@ -75,6 +76,7 @@ class logout {
     }
 
     updateMyCommitment(idUser, body, newIdMap) {
+        console.log(body);
         if (body.MyCommitment.length > 0) {
             let comms = body.MyCommitment.filter((c) => c.idUser == idUser);
             for (let i = 0; i < comms.length; i++) {
